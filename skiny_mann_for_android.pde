@@ -91,7 +91,7 @@ PImage CBi, icon, discordIcon;
 PShape coin3D;
 PApplet primaryWindow=this;
 boolean menue =true, inGame=false, player1_moving_right=false, player1_moving_left=false, dev_mode=false, player1_jumping=false, dead=false, level_complete=false, reset_spawn=false, fs, E_pressed=false, loopThread2=true, showSettingsAfterStart=false, displayFPS=true, displayDebugInfo=false, prevousInGame=false, setPlayerPosTo=false, e3DMode=false, checkpointIn3DStage=false, WPressed=false, SPressed=false, levelCompleteSoundPlayed=false, tutorialMode=false, shadow3D=true, UGC_lvl=false, levelCompatible=false, editingBlueprint=false, viewingItemContents=false, selecting=false, s3D=false, w3D=false, shift3D=false, space3D=false, d3D=false, a3D=false, cam_down=false, cam_up=false, cam_right=false, cam_left=false, isHost=false, killPhysics=false, enteringName=false, enteringPort=false, enteringIP=false, multiplayer=false, clientQuitting=false, waitingForReady=false, loaded=false, reachedEnd=false;
- String Menue ="creds"/*,level="n"*/, version="0.7.0_Early_Access", ip="localhost", name="can't_be_botherd_to_chane_it", input, file_path, rootPath, stageType="", settingsMenue="game play", author="", displayText="", GAME_version=version, internetVersion, cursor="", disconnectReason="", multyplayerSelectionLevels="speed", multyplayerSelectedLevelPath,appdata;
+String Menue ="creds"/*,level="n"*/, version="0.7.0_Early_Access", ip="localhost", name="can't_be_botherd_to_chane_it", input, file_path, rootPath, stageType="", settingsMenue="game play", author="", displayText="", GAME_version=version, internetVersion, cursor="", disconnectReason="", multyplayerSelectionLevels="speed", multyplayerSelectedLevelPath,appdata;
 ArrayList<Boolean> coins;
 ArrayList<String> UGCNames, playerNames=new ArrayList<>();
 float Scale =1, Scale2=1, musicVolume=1, sfxVolume=1, gravity=0.001;
@@ -101,7 +101,7 @@ ArrayList<Client> clients= new ArrayList<>();
 
 int camPos=0, camPosY=0, death_cool_down, start_down, port=9367, scroll_left, scroll_right, respawnX=20, respawnY=700, respawnZ=150, spdelay=0, vres, hres, respawnStage, stageIndex, coinCount=0, eadgeScroleDist=100, esdPos=800, setPlayerPosX, setPlayerPosY, setPlayerPosZ, gmillis=0, coinRotation=0, vesdPos=800, eadgeScroleDistV=100, settingsVersion=3, musVolSllid=800, sfxVolSllid=800, currentStageIndex, tutorialDrawLimit=0, displayTextUntill=0, tutorialPos=0, currentTutorialSound, tutorialNarrationMode=0, UGC_lvl_indx, selectedIndex=-1, viewingItemIndex=-1, drawCamPosX=0, drawCamPosY=0, currentPlayer=0, currentNumberOfPlayers=10, startTime, bestTime=0, sessionTime=600000, timerEndTime;
 JSONArray  settings, mainIndex, levelProgress;
-Button select_lvl_1, select_lvl_back, discord, select_lvl_2, select_lvl_3, select_lvl_4, select_lvl_5, select_lvl_6, sdSlider, enableFPS, disableFPS, enableDebug, disableDebug, sttingsGPL, settingsDSP, settingsOUT, rez720, rez900, rez1080, rez1440, rez4k, fullScreenOn, fullScreenOff, vsdSlider, MusicSlider, SFXSlider, shadowOn, shadowOff, narrationMode1, narrationMode0, select_lvl_UGC, UGC_open_folder, UGC_lvls_next, UGC_lvls_prev, UGC_lvl_play, levelcreatorLink, select_lvl_7, select_lvl_8, select_lvl_9, select_lvl_10, playButton, joinButton, settingsButton, howToPlayButton, exitButton, downloadUpdateButton, updateGetButton, updateOkButton, dev_main, dev_quit, dev_levels, dev_tutorial, dev_settings, dev_UGC, dev_multiplayer, multyplayerJoin, multyplayerHost, multyplayerExit, multyplayerGo, multyplayerLeave, multyplayerSpeedrun, multyplayerCoop, multyplayerUGC, multyplayerPlay, increaseTime, decreaseTime, pauseRestart;
+Button select_lvl_1, select_lvl_back, discord, select_lvl_2, select_lvl_3, select_lvl_4, select_lvl_5, select_lvl_6, sdSlider, enableFPS, disableFPS, enableDebug, disableDebug, sttingsGPL, settingsDSP, settingsOUT, rez720, rez900, rez1080, rez1440, rez4k, fullScreenOn, fullScreenOff, vsdSlider, MusicSlider, SFXSlider, shadowOn, shadowOff, narrationMode1, narrationMode0, select_lvl_UGC, UGC_open_folder, UGC_lvls_next, UGC_lvls_prev, UGC_lvl_play, levelcreatorLink, select_lvl_7, select_lvl_8, select_lvl_9, select_lvl_10, playButton, joinButton, settingsButton, howToPlayButton, exitButton, downloadUpdateButton, updateGetButton, updateOkButton, dev_main, dev_quit, dev_levels, dev_tutorial, dev_settings, dev_UGC, dev_multiplayer, multyplayerJoin, multyplayerHost, multyplayerExit, multyplayerGo, multyplayerLeave, multyplayerSpeedrun, multyplayerCoop, multyplayerUGC, multyplayerPlay, increaseTime, decreaseTime, pauseRestart,moveLeft,moveRight,jumpButton,useButton,movein,moveout;
 String[] musicTracks ={"music/track1.wav"}, sfxTracks={"sounds/level complete.wav"}, compatibleVersions={"0.7.0_Early_Access"};
 SoundHandler soundHandler;
 Level level;
@@ -185,7 +185,7 @@ void draw() {// the function that is called every fraim
         exitButton.draw();
         joinButton.draw();
         settingsButton.draw();
-        howToPlayButton.draw();
+        //howToPlayButton.draw();
         textAlign(LEFT, BOTTOM);
 
         fill(255);
@@ -889,7 +889,53 @@ void draw() {// the function that is called every fraim
         }
       }
     }
-
+    
+    if(inGame){
+      moveLeft.draw();
+      moveRight.draw();
+      jumpButton.draw();
+      useButton.draw();
+      if(e3DMode){
+        movein.draw();
+        moveout.draw();
+      }
+    }
+    
+    boolean leftPressed=false,rightPressed=false,jumpPressed=false,usePressed=false,inPressed=false,outPressed=false;
+    //handle multi touch
+    for(int i=0;i<touches.length;i++){
+      if(inGame){
+        mouseX=(int)touches[i].x;
+        mouseY=(int)touches[i].y;
+        if(moveLeft.isMouseOver()){
+          leftPressed=true;
+        }
+        if(moveRight.isMouseOver()){
+          rightPressed=true;
+        }
+        if(jumpButton.isMouseOver()){
+          jumpPressed=true;
+        }
+        if(useButton.isMouseOver()){
+          usePressed=true;
+        }
+        if(e3DMode){
+          if(movein.isMouseOver()){
+            inPressed=true;
+          }
+          if(moveout.isMouseOver()){
+            outPressed=true;
+          }
+        }
+        
+      }
+    }
+    player1_moving_left=leftPressed;
+    player1_moving_right=rightPressed;
+    player1_jumping=jumpPressed;
+    E_pressed=usePressed;
+    WPressed=inPressed;
+    SPressed=outPressed;
 
     disEngageHUDPosition();
   }
@@ -1367,10 +1413,12 @@ void mousePressed() {// when you click the mouse
         if (mouseX >= width/2-width*0.4 && mouseX <= width/2+width*0.4 && mouseY >= height*0.15 && mouseY <= height*0.2) {//name line
           enteringName=true;
           enteringPort=false;
+          openKeyboard();
         }
         if (mouseX >= width/2-width*0.05 && mouseX <= width/2+width*0.05 && mouseY >= height*0.26 && mouseY <= height*0.31) {//port line
           enteringName=false;
           enteringPort=true;
+          openKeyboard();
         }
         if (multyplayerGo.isMouseOver()) {
           isHost=true;
@@ -1378,6 +1426,7 @@ void mousePressed() {// when you click the mouse
           multiplayer = true;
           server= new Server(port);
           players[0].name=name;
+          closeKeyboard();
         }
         return;
       }
@@ -1389,21 +1438,25 @@ void mousePressed() {// when you click the mouse
           enteringName=true;
           enteringPort=false;
           enteringIP=false;
+          openKeyboard();
         }
         if (mouseX >= width/2-width*0.05 && mouseX <= width/2+width*0.05 && mouseY >= height*0.26 && mouseY <= height*0.31) {//port line
           enteringName=false;
           enteringPort=true;
           enteringIP=false;
+          openKeyboard();
         }
         if (mouseX >= width/2-width*0.3 && mouseX <= width/2+width*0.3 && mouseY >= height*0.37 && mouseY <= height*0.42) {//ip line
           enteringName=false;
           enteringPort=false;
           enteringIP=true;
+          openKeyboard();
         }
         if (multyplayerGo.isMouseOver()) {
           isHost=false;
           Menue="multiplayer selection";
           multiplayer=true;
+          closeKeyboard();
           try {
             clients.add(new Client(new Socket(ip, port)));
           }
@@ -1539,18 +1592,18 @@ void mousePressed() {// when you click the mouse
 }
 
 void backPressed() {
-  key = ESC;//simulate pressing ESC
+  key = 1;//simulate pressing ESC
   keyPressed();
 }
 
 void keyPressed() {// when a key is pressed
   try {
-    if (!menue&&tutorialMode&&key == ESC) {
+    if (!menue&&tutorialMode&&key == 1) {
       exit(1);
     }
 
     if (inGame) {//if in game
-      if (key == ESC) {
+      if (key == 1) {
         key = 0;  //clear the key so it doesnt close the program
         menue=true;
         Menue="pause";
@@ -1616,19 +1669,19 @@ void keyPressed() {// when a key is pressed
     }
     if (menue) {
       if (Menue.equals("level select")) {
-        if (key == ESC) {
+        if (key == 1) {
           key = 0;  //clear the key so it doesnt close the program
           Menue="main";
         }
       }
       if (Menue.equals("level select UGC")) {
-        if (key == ESC) {
+        if (key == 1) {
           key = 0;  //clear the key so it doesnt close the program
           Menue="level select";
         }
       }
       if (Menue.equals("settings")) {
-        if (key == ESC) {
+        if (key == 1) {
           key = 0;  //clear the key so it doesnt close the program
           if (prevousInGame) {
             Menue="pause";
@@ -1640,17 +1693,17 @@ void keyPressed() {// when a key is pressed
         }
       }
       if (Menue.equals("how to play")) {
-        if (key == ESC) {
+        if (key == 1) {
           key = 0;  //clear the key so it doesnt close the program
           Menue="main";
         }
       }
       if (Menue.equals("main")) {
-        if (key == ESC)
+        if (key == 1)
           exit(0);
       }
       if (Menue.equals("start host")) {
-        if (key == ESC) {
+        if (key == 1) {
           key = 0;  //clear the key so it doesnt close the program
           Menue="main";
         }
@@ -1674,7 +1727,7 @@ void keyPressed() {// when a key is pressed
         }
       }
       if (Menue.equals("start join")) {
-        if (key == ESC) {
+        if (key == 1) {
           key = 0;  //clear the key so it doesnt close the program
           Menue="main";
         }
@@ -1702,7 +1755,7 @@ void keyPressed() {// when a key is pressed
       }
     }
 
-    //System.out.println(keyCode);
+    System.out.println(keyCode);
   }
   catch(Throwable e) {
     handleError(e);
@@ -2716,4 +2769,11 @@ void  initButtons() {
   multyplayerPlay = new Button(this, width*0.809375, height*0.916666, width*0.1828125, height*0.0694444444, "Play", -59135, -1791).setStrokeWeight(10*Scale);
   increaseTime = new Button(this, width*0.80546875, height*0.7, width*0.03, width*0.03, "^", -59135, -1791).setStrokeWeight(5*Scale);
   decreaseTime = new Button(this, width*0.96609375, height*0.7, width*0.03, width*0.03, "v", -59135, -1791).setStrokeWeight(5*Scale);
+  
+  moveLeft=new Button(this, 20*Scale,height-300*Scale,100*Scale,100*Scale," < ",color(255,255,255,50),color(255,255,255,50));
+  moveRight=new Button(this, 160*Scale,height-300*Scale,100*Scale,100*Scale," > ",color(255,255,255,50),color(255,255,255,50));
+  jumpButton=new Button(this,width-120*Scale,height-300*Scale,100*Scale,100*Scale," ^ ",color(255,255,255,50),color(255,255,255,50));
+  useButton=new Button(this,width/2-60*Scale,height-80*Scale,120*Scale,80*Scale,"Use",color(255,255,255,50),color(255,255,255,50));
+  movein=new Button(this,90*Scale,height-420*Scale,100*Scale,100*Scale," ^ ",color(255,255,255,50),color(255,255,255,50));
+  moveout=new Button(this,90*Scale,height-180*Scale,100*Scale,100*Scale," v ",color(255,255,255,50),color(255,255,255,50));
 }

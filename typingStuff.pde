@@ -51,7 +51,7 @@ char getCh(int mode, char leter) {
  @returns a string with 1 less char
  */
 String doBackspace(String imp, int code) {
-  if (code==8) {//if the key was backspace
+  if (code==67) {//if the key was backspace
     if (imp.length()>1) {//remove the last char
       return imp.substring(0, imp.length()-1);
     } else if (imp.length()==1) {
