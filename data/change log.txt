@@ -1,3 +1,165 @@
+if you get a trojan waring from windows defender check this link
+https://github.com/processing/processing4/wiki/Troubleshooting#viruses-and-trojans
+
+0.7.0_Early_Access
+-fixed: verticle blipping. as a consequence the max verticle scroll location is now 320
+-changed: CBI sphere texture
+-fixed: 3D switches not scaling properly with resolutions
+-changed: settings/progrss/UGC is now stored in users home directory on mac/linux
+-added: multyplayer. now with 2 modes
+-added: co-op_1 multyplayer level
+-added: co-op_2 multyplayer level
+-changed: prbly some outher things I don't remember
+
+0.6.2_Early_Access
+-fixed: final audio clip in tutorial could be played in stage 1 if you died
+-changed: reduced respawn cooldown
+
+0.6.1_Early_Access
+-added: update installer(windows only)
+-fixed: player being able to move in the z-axis when dide in stage 2 before getting the checkpoint
+-added: 3D logic controlls
+-changed: removed giant triangle at start of level-2
+-changed: spawn position in level 5
+
+
+
+0.6.0_Early_Access
+-changed: upgraded Button to 1.2.0
+-added: logic to levels
+-added: level-9
+-added: level-10
+-added: logic interactive buttons
+-changed: fatal error handling imporoved
+-changed: improved main menue buttons
+
+
+0.5.0_Early_Access
+-changed: doubled movemet speed
+-changed: jumping/gravity is now more reslistic 
+-added: signs
+-added: changable sky color
+-added: sound hit boxes
+-added: level-7
+-added: level-8
+-fixed: parts of levels randomly bliping up
+-fixed: sound file would not get set while loading settings
+-added: sign to level 5 explaining how to move back and forth in 3D
+-added: platform in level 4 to assist with first jump
+-added: user generated levels now muct be of a compatible game version
+-changed: default screen srcolling locations
+-added: information to the "options" menue during the tutorial
+
+0.4.3_Early_Access
+-changed: file paths now compatible with linux
+-changed: in tutorial when the narrator is talking about jumping you can no longer move
+-fixed: coins would carry over from one level to another
+
+
+0.4.2_Early_Access
+-fixed: game crash when trying to view UGC levels when the folder does not exsist.
+-added: if a fatal error occors then a window will pop up with the error
+
+0.4.1_Early_Access
+-fixed: tutorial no longer contributes to progress
+-added: user generated levels
+
+0.4.0_Early_Access
+-changed: JSON Arrays are no longer used internally for storing game objects and processing calculations  
+-human seek: massively improved performance   
+-added: 3D shadow  
+-changed: when standing at a portal the text "Press E" now appears in your face  
+-removed: how to play menu  
+-added: narrated tutorial   
+-changed: main menu now says Early Access  
+-added: 3D shadow setting  
+-added: tutorial narration mode setting  
+
+0.3.1_ALFA
+-fixed: progress file would not be created if it did not exist
+
+0.3.0_ALFA
++added: 3D stages
++added: level-5
++added: level-6
+-fixed: seccond jump in level-2 was sometimes imposible
+=updated to processing 4.0b1
+=updated to java 11, open JDK 11 or higher will be required to run the game without java included
++added: glitch effect
+-changed: startup screen is now 3D
+-changed: settings menue now has multple screens
+-removed: screen scrolling location setting
++added: horozontal screen scrolling location setting
++added: vertical screen scrolling location setting
++added: music
++added: music volume slider
++added: sfx volume slider
++added: level complete sound
+
+
+0.2.1_ALFA
+-fixed: sky poked through level terrain occasionally when moving
+-fixed: position not being changed when using interdimensional portal
+
+
+
+
+0.2.0_ALFA
+-changed: all movement and player physics calculations now run on independent processing thread
++added: vertical camera movement
++added: level 3
++added: level 4
++added: kill planes
+-changed: settings is now stored in a new location so they should not reset in the next update
+-changed: the settings menu now pops up the first time you open the game
+-changed: screen scrolling location setting is now a slider between 100-350
++added: display fps option
++added: display debug info option
++added: debug info
++added: options button in pause menu
+
+
+
+
+
+0.1.0_ALFA
+-changed: redone level structure
+-removed: all beta levels
+-changed: player moment speed is no longer linked to frame rate
+-changed: jump height is now much higher and speed is now independent of the frame rate all of this is subject to change
+-changed: player collisions are now calculated at multiple points around the edge of the player instead of 1 point at the bottom middle and 1 point at the top middle
+-added: COINS $$$$$$$$$ -no use yet
+-added: interdenominational portal
+-added: sub stages
+-added: update detection system (applied retroactively)
+-changed: pause button is now escape
+-added: additional functionality to the escape button
+-fixed: how to play now scales properly at different resolutions
+-added: characters to the main menu
+-added: ALFA under the title
+-removed: local multiplayer
+-changed: checkpoint pole now turn yellow when activated
+-added: level 1
+-added: level 2
+
+
+
+0.0.2_bata
+-added: level 5, bewhare the lava
+-note: this is the last update before ALFA
+
+0.0.1_bata
+-added: boxes that dont have collision
+-added: level 4, through the trees
+-changed: checkpoints have slightly larger rages
+-changed: spaces can now be used in multyplayer names
+
+
+
+
+
+
+
 0.0.0.5_bata the resolution update
 -added: verticle resolution setting
 -added: fullscreen mode (milage may varry)

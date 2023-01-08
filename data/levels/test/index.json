@@ -1,0 +1,130 @@
+[
+  {
+    "mainStage": 0,
+    "coins": 69,
+    "min players": 2,
+    "author": "jSdCool",
+    "level_id": 765319749,
+    "spawnX": 20,
+    "groups": [
+      "first lol",
+      "number 2!!!!",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20"
+    ],
+    "game version": "0.7.0_Early_Access",
+    "spawnY": 698,
+    "max players": 3,
+    "number of variable": 50,
+    "name": "test",
+    "spawn pointX": 20,
+    "spawn pointY": 698,
+    "multyplayer mode": 2
+  },
+  {
+    "name": "test stage 1",
+    "location": "/test stage 1.json",
+    "type": "stage"
+  },
+  {
+    "name": "test 3",
+    "location": "/test 3.json",
+    "type": "stage"
+  },
+  {
+    "name": "teaters 334",
+    "location": "/teaters 334.json",
+    "type": "stage"
+  },
+  {
+    "name": "end stage",
+    "location": "/end stage.json",
+    "type": "stage"
+  },
+  {
+    "name": "deth",
+    "location": "/deth.json",
+    "type": "stage"
+  },
+  {
+    "name": "3D test 1",
+    "location": "/3D test 1.json",
+    "type": "3Dstage"
+  },
+  {
+    "name": "3D test 2",
+    "location": "/3D test 2.json",
+    "type": "3Dstage"
+  },
+  {
+    "name": "sagasdaserghw",
+    "location": "/sagasdaserghw.json",
+    "type": "stage"
+  },
+  {
+    "name": "signs and sloaps",
+    "location": "/signs and sloaps.json",
+    "type": "stage"
+  },
+  {
+    "name": "yoho",
+    "location": "/yoho.json",
+    "type": "stage"
+  },
+  {
+    "name": "logic",
+    "location": "/logic.json",
+    "type": "3Dstage"
+  },
+  {
+    "name": "boop",
+    "location": "/smpl.wav",
+    "type": "sound"
+  },
+  {
+    "name": "boop3",
+    "location": "/smpl.wav",
+    "type": "sound"
+  },
+  {
+    "name": "boop2",
+    "location": "/smpl.wav",
+    "type": "sound"
+  },
+  {
+    "name": "eee",
+    "location": "/eee.json",
+    "type": "logicBoard"
+  },
+  {
+    "name": "tick",
+    "location": "/tick.json",
+    "type": "logicBoard"
+  },
+  {
+    "name": "load",
+    "location": "/load.json",
+    "type": "logicBoard"
+  },
+  {
+    "name": "level complete",
+    "location": "/level complete.json",
+    "type": "logicBoard"
+  }
+]

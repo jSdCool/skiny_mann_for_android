@@ -1,0 +1,25 @@
+[
+  {
+    "name": "sagasdaserghw",
+    "sky color": -9131009,
+    "type": "stage"
+  },
+  {
+    "dx": 700,
+    "color": -16732415,
+    "dy": 20,
+    "x": 0,
+    "y": 700,
+    "type": "ground",
+    "group": -1
+  },
+  {
+    "link Index": 5,
+    "x": 69,
+    "y": 648,
+    "type": "interdimentional Portal",
+    "linkY": 642,
+    "linkX": 178,
+    "group": -1
+  }
+]

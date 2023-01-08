@@ -1,0 +1,2 @@
+class CloseMenuRequest extends DataPacket {
+}

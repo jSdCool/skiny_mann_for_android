@@ -1,0 +1,39 @@
+[
+  {
+    "mainStage": 0,
+    "coins": 0,
+    "min players": 2,
+	"author": "jSdCool",
+    "level_id": 707313637,
+    "spawnX": 20,
+    "groups": ["group 0"],
+    "game version": "0.7.0_Early_Access",
+    "spawnY": 700,
+    "max players": 2,
+    "number of variable": 5,
+    "name": "level-8",
+    "spawn pointX": 20,
+    "spawn pointY": 700,
+    "multyplayer mode": 1
+  },
+  {
+    "name": "stage 1",
+    "location": "/stage 1.json",
+    "type": "stage"
+  },
+  {
+    "name": "load",
+    "location": "/load.json",
+    "type": "logicBoard"
+  },
+  {
+    "name": "tick",
+    "location": "/tick.json",
+    "type": "logicBoard"
+  },
+  {
+    "name": "level complete",
+    "location": "/level complete.json",
+    "type": "logicBoard"
+  }
+]
