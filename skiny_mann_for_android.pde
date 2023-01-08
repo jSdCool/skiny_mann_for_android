@@ -1538,6 +1538,10 @@ void mousePressed() {// when you click the mouse
   }
 }
 
+void backPressed() {
+  key = ESC;//simulate pressing ESC
+  keyPressed();
+}
 
 void keyPressed() {// when a key is pressed
   try {
