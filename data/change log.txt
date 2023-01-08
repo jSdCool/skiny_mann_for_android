@@ -1,0 +1,22 @@
+0.0.0.5_bata the resolution update
+-added: verticle resolution setting
+-added: fullscreen mode (milage may varry)
+-changed: every time something neede to be drawn it now also neede to be scaled
+
+
+
+
+
+
+
+
+
+
+
+0.0.0.4_bata
+-added: level 3
+-added: how to play menue
+-changed: gravity now allows you to land on platform thet dont have a y value divisible by 5 level 3+
+-changed: slightly wider range for checkpoint activation level 3+
+-changed: imporoved backend networing for multyplayer 
+-fixed: hosting player name nolonger displays as blue
