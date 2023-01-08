@@ -2,7 +2,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.*;
 class Server extends Thread {
-  static skiny_mann source;
+  static skiny_mann_for_android source;
   ServerSocket serverSocket;
   Server(int port) {
     System.out.println("starting server");

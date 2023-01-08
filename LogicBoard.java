@@ -4,7 +4,7 @@ import processing.data.*;
 import java.util.ArrayList;
 
 class LogicBoard {//stores all the logic components
-  static skiny_mann source;
+  static skiny_mann_for_android source;
   public String name="eee";//temp name
   public ArrayList<LogicComponent> components=new ArrayList<>();
   LogicBoard(JSONArray file, Level level) {

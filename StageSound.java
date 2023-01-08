@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import processing.sound.*;
 
 class StageSound {
-  static skiny_mann source;
+  static skiny_mann_for_android source;
   String path, name, type="sound";
   protected SoundFile sound;
   StageSound(JSONObject input) {

@@ -2,7 +2,7 @@ import java.net.Socket;
 import java.io.*;
 import java.util.ArrayList;
 class Client extends Thread {
-  static skiny_mann source;
+  static skiny_mann_for_android source;
   int playernumber;
   Socket socket;
   ObjectOutputStream output;

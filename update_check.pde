@@ -8,8 +8,7 @@ void draw_updae_screen() {//the update screen
   text("A new version of this game has been released!!!", width/2, height/6);
   updateOkButton.draw();
   updateGetButton.draw();
-  if (platform==WINDOWS)
-    downloadUpdateButton.draw();
+
 
   textAlign(LEFT);
 }
@@ -29,44 +28,9 @@ void updae_screen_click() {//the buttons on the update screen
   if (updateOkButton.isMouseOver()) {
     Menue="main";//go to the main menue
   }
-  if (platform==WINDOWS&&downloadUpdateButton.isMouseOver()) {
-    Menue="downloading update";
-    thread("downloadUpdateFunction");
-  }
 }
 
-void downloadUpdateFunction() {
-  try {
-    String updaterLinks[]=readFileFromGithub("https://raw.githubusercontent.com/jSdCool/CBI-games-version-checker/master/skinny_mann_updater_info").split("\n");
-    new File(System.getenv("AppData")+"/CBi-games/skinny mann updater").mkdirs();
-    DownloadFile.download(updaterLinks[0], System.getenv("AppData")+"/CBi-games/skinny mann updater/skinny mann updater.jar");
-    int javaLevel=1;
-    String sketchFolders[]=new File(sketchPath()).list();
-    for (int i=0; i<sketchFolders.length; i++) {
-      if (sketchFolders[i].equals("java"))
-        javaLevel=2;
-    }
-    saveStrings(System.getenv("AppData")+"/CBi-games/skinny mann updater/downloadInfo.txt", new String[]{updaterLinks[javaLevel], internetVersion, sketchPath()});
-    if (javaLevel==2) {
-      scanForFiles(sketchPath()+"/java", "");
-      for (int i=0; i<fileIndex.size(); i++) {
-        javaCopy(0, sketchPath()+"/java/"+fileIndex.get(i), System.getenv("AppData")+"/CBi-games/skinny mann updater/java/"+fileIndex.get(i));
-      }
-      saveStrings(System.getenv("AppData")+"/CBi-games/skinny mann updater/run.cmd", new String[]{"@echo off", "title skinny mann updater launcher", "echo this window can be closed", "cd "+System.getenv("AppData")+"/CBi-games/skinny mann updater", "\""+System.getenv("AppData")+"/CBi-games/skinny mann updater/java/bin/javaw.exe\" -jar \"skinny mann updater.jar\"", "exit"});
-    } else {
-      saveStrings(System.getenv("AppData")+"/CBi-games/skinny mann updater/run.cmd", new String[]{"@echo off", "title skinny mann updater launcher", "echo this window can be closed", "cd "+System.getenv("AppData")+"/CBi-games/skinny mann updater", "javaw -jar \"skinny mann updater.jar\"", "exit"});
-    }
-    int a=millis();
-    while (a+500<=millis()) {
-      random(1);
-    }
-    Desktop.getDesktop().open(new File(System.getenv("AppData")+"/CBi-games/skinny mann updater/run.cmd"));
-    exit(2);
-  }
-  catch(Throwable e) {
-    handleError(e);
-  }
-}
+
 
 String readFileFromGithub(String link)throws Throwable {//used to read text files from github, used for getting the latesed verion  of the game and for outher update functions
   URL url =new URL(link);//get as URL

@@ -10,18 +10,23 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
-import java.awt.Desktop;
-import javax.swing.*;
+import android.os.Environment;
+import android.content.Context;
+
 
 void settings() {//first function called
-  if (platform==WINDOWS){
-   appdata=System.getenv("AppData");
-  }else{
-    appdata=System.getenv("HOME");
-  }
+  fullScreen(P3D/*, rez.getInt("full_Screen_diplay")*/);
+}
+
+void setup() {//seccond function called
+  orientation(LANDSCAPE);
+  Context context = this.getActivity().getApplicationContext();
+  appdata= context.getExternalFilesDir(null).toString();
   try {
     println("attempting to load settings");
+    println(appdata);
     try {
+      new File(appdata+"/CBi-games/skinny mann/").mkdirs();
       settings =loadJSONArray(appdata+"/CBi-games/skinny mann/settings.json");//load the settings
       JSONObject vers=settings.getJSONObject(0);
       if (vers.getInt("settings version")!=settingsVersion) {
@@ -35,28 +40,24 @@ void settings() {//first function called
     }
 
     JSONObject rez=settings.getJSONObject(2);//get the screen resolutipon
-    fs=rez.getBoolean("full_Screen");
-    if (!fs) {//check for fullscreeen
+    //fs=rez.getBoolean("full_Screen");
+   /* if (!fs) {//check for fullscreeen
       vres = rez.getInt("v-res");//if no fulll screen then set the resolution
       hres = rez.getInt("h-res");
       Scale=rez.getFloat("scale");
       size(hres, vres, P3D);
-    } else {
-      fullScreen(P3D, rez.getInt("full_Screen_diplay"));//if full screen then turn full screen on
-    }
+   } else {*/
+      //fullScreen(P3D/*, rez.getInt("full_Screen_diplay")*/);//if full screen then turn full screen on
+      fs=true;
+    //}
     println("loading window icon");
-    PJOGL.setIcon("data/assets/skinny mann face.PNG");
+    //PJOGL.setIcon("assets/skinny mann face.PNG");
     sourceInitilize();
   }
   catch(Throwable e) {
-    println("an error orrored in the settings function");
+    println("an error orrored in the start of the setup function");
     handleError(e);
   }
-}
-
-
-
-void setup() {//seccond function called
   try {
     frameRate(60);//limet the frame reate
     background(0);
@@ -68,7 +69,7 @@ void setup() {//seccond function called
     }
     println(height+" "+Scale);//debung info
     println("loading texture for start screen");
-    CBi = loadImage("data/assets/CBi.png");//load the CBi logo
+    CBi = loadImage("assets/CBi.png");//load the CBi logo
 
     textSize(100*Scale);//500
     println("initilizing buttons");
@@ -101,7 +102,7 @@ ArrayList<Client> clients= new ArrayList<>();
 int camPos=0, camPosY=0, death_cool_down, start_down, port=9367, scroll_left, scroll_right, respawnX=20, respawnY=700, respawnZ=150, spdelay=0, vres, hres, respawnStage, stageIndex, coinCount=0, eadgeScroleDist=100, esdPos=800, setPlayerPosX, setPlayerPosY, setPlayerPosZ, gmillis=0, coinRotation=0, vesdPos=800, eadgeScroleDistV=100, settingsVersion=3, musVolSllid=800, sfxVolSllid=800, currentStageIndex, tutorialDrawLimit=0, displayTextUntill=0, tutorialPos=0, currentTutorialSound, tutorialNarrationMode=0, UGC_lvl_indx, selectedIndex=-1, viewingItemIndex=-1, drawCamPosX=0, drawCamPosY=0, currentPlayer=0, currentNumberOfPlayers=10, startTime, bestTime=0, sessionTime=600000, timerEndTime;
 JSONArray  settings, mainIndex, levelProgress;
 Button select_lvl_1, select_lvl_back, discord, select_lvl_2, select_lvl_3, select_lvl_4, select_lvl_5, select_lvl_6, sdSlider, enableFPS, disableFPS, enableDebug, disableDebug, sttingsGPL, settingsDSP, settingsOUT, rez720, rez900, rez1080, rez1440, rez4k, fullScreenOn, fullScreenOff, vsdSlider, MusicSlider, SFXSlider, shadowOn, shadowOff, narrationMode1, narrationMode0, select_lvl_UGC, UGC_open_folder, UGC_lvls_next, UGC_lvls_prev, UGC_lvl_play, levelcreatorLink, select_lvl_7, select_lvl_8, select_lvl_9, select_lvl_10, playButton, joinButton, settingsButton, howToPlayButton, exitButton, downloadUpdateButton, updateGetButton, updateOkButton, dev_main, dev_quit, dev_levels, dev_tutorial, dev_settings, dev_UGC, dev_multiplayer, multyplayerJoin, multyplayerHost, multyplayerExit, multyplayerGo, multyplayerLeave, multyplayerSpeedrun, multyplayerCoop, multyplayerUGC, multyplayerPlay, increaseTime, decreaseTime, pauseRestart;
-String[] musicTracks ={"data/music/track1.wav", "data/music/track2.wav", "data/music/track3.wav"}, sfxTracks={"data/sounds/level complete.wav"}, compatibleVersions={"0.7.0_Early_Access"};
+String[] musicTracks ={"music/track1.wav"}, sfxTracks={"sounds/level complete.wav"}, compatibleVersions={"0.7.0_Early_Access"};
 SoundHandler soundHandler;
 Level level;
 SoundFile[][] tutorialNarration=new SoundFile[2][17];
@@ -139,18 +140,13 @@ void draw() {// the function that is called every fraim
           }
 
           try {
-            String inver = readFileFromGithub("https://raw.githubusercontent.com/jSdCool/CBI-games-version-checker/master/skinny_mann.txt");//check for updates  inver = internet version
-            inver =inver.substring(0, inver.length()-1);
-            internetVersion=inver;
-            if (!inver.equals(version)) {//if an update exists
-              Menue="update";//go to update menue
-            } else {//if no update exists go to main menue
+            
               if (showSettingsAfterStart) {
                 Menue="settings";
               } else {
                 Menue="main";
               }
-            }
+            
           }
           catch(Throwable e) {//if an error occors or no return then go to main menue
             if (showSettingsAfterStart) {
@@ -932,7 +928,7 @@ void draw() {// the function that is called every fraim
 
 
 
-void mouseClicked() {// when you click the mouse
+void mousePressed() {// when you click the mouse
   //!hosting&&!joined
   try {
 
@@ -954,9 +950,9 @@ void mouseClicked() {// when you click the mouse
         }
         if (howToPlayButton.isMouseOver()) {//how to play button
           //how to play
-          menue=false;
-          tutorialMode=true;
-          tutorialPos=0;
+          //menue=false;
+          //tutorialMode=true;
+          //tutorialPos=0;
         }
         if (discord.isMouseOver()) {
           link("http://discord.gg/C5SACF2");
@@ -965,52 +961,52 @@ void mouseClicked() {// when you click the mouse
       if (Menue.equals("level select")) {//if that menue is level select
         int progress=levelProgress.getJSONObject(0).getInt("progress")+1;
         if (select_lvl_1.isMouseOver()) {
-          loadLevel("data/levels/level-1");
+          loadLevel("levels/level-1");
           menue=false;
           inGame=true;
         }
         if (select_lvl_2.isMouseOver()&&progress>=2) {
-          loadLevel("data/levels/level-2");
+          loadLevel("levels/level-2");
           menue=false;
           inGame=true;
         }
         if (select_lvl_3.isMouseOver()&&progress>=3) {
-          loadLevel("data/levels/level-3");
+          loadLevel("levels/level-3");
           menue=false;
           inGame=true;
         }
         if (select_lvl_4.isMouseOver()&&progress>=4) {
-          loadLevel("data/levels/level-4");
+          loadLevel("levels/level-4");
           menue=false;
           inGame=true;
         }
         if (select_lvl_5.isMouseOver()&&progress>=5) {
-          loadLevel("data/levels/level-5");
+          loadLevel("levels/level-5");
           menue=false;
           inGame=true;
         }
         if (select_lvl_6.isMouseOver()&&progress>=6) {
-          loadLevel("data/levels/level-6");
+          loadLevel("levels/level-6");
           menue=false;
           inGame=true;
         }
         if (select_lvl_7.isMouseOver()&&progress>=7) {
-          loadLevel("data/levels/level-7");
+          loadLevel("levels/level-7");
           menue=false;
           inGame=true;
         }
         if (select_lvl_8.isMouseOver()&&progress>=8) {
-          loadLevel("data/levels/level-8");
+          loadLevel("levels/level-8");
           menue=false;
           inGame=true;
         }
         if (select_lvl_9.isMouseOver()&&progress>=9) {
-          loadLevel("data/levels/level-9");
+          loadLevel("levels/level-9");
           menue=false;
           inGame=true;
         }
         if (select_lvl_10.isMouseOver()&&progress>=10) {
-          loadLevel("data/levels/level-10");
+          loadLevel("levels/level-10");
           menue=false;
           inGame=true;
         }
@@ -1446,13 +1442,13 @@ void mouseClicked() {// when you click the mouse
             int slotSelected=(int)( (mouseY - height*0.09)/(height*0.8127777777/16));
             if (multyplayerSelectionLevels.equals("speed")) {
               if (slotSelected<=9) {//set speed run max levels here for selection
-                multyplayerSelectedLevelPath="data/levels/level-"+(slotSelected+1);
+                multyplayerSelectedLevelPath="levels/level-"+(slotSelected+1);
                 genSelectedInfo(multyplayerSelectedLevelPath);
               }
             }
             if (multyplayerSelectionLevels.equals("coop")) {
               if (slotSelected<=1) {// set co op max levels here for selection
-                multyplayerSelectedLevelPath="data/levels/co-op_"+(slotSelected+1);
+                multyplayerSelectedLevelPath="levels/co-op_"+(slotSelected+1);
                 genSelectedInfo(multyplayerSelectedLevelPath);
               }
             }
@@ -1861,7 +1857,7 @@ void loadLevel(String fdp) {
   }
 }
 
-int curMills=0, lasMills=0, mspc=0;
+int curMills=0, lasMills=0, mspc=0,lastSoundTick=0;
 
 void thrdCalc2() {
 
@@ -1887,7 +1883,10 @@ void thrdCalc2() {
     //println(mspc);
     //soundHandler.setMusicVolume(musicVolume);
     //soundHandler.setSoundsVolume(sfxVolume);
-    soundHandler.tick();
+    if(lastSoundTick<millis()-1000){
+      //soundHandler.tick();
+      lastSoundTick=millis();
+    }
   }
 }
 
@@ -1958,7 +1957,7 @@ void tutorialLogic() {
     player1_moving_right=false;
     player1_jumping=false;
     if (!tutorialNarration[tutorialNarrationMode][currentTutorialSound].isPlaying()) {
-      loadLevel("/data/levels/tutorial");
+      loadLevel("/levels/tutorial");
       inGame=true;
       tutorialDrawLimit=3;
       currentTutorialSound=2;
@@ -2143,11 +2142,11 @@ void tutorialLogic() {
 }
 
 void openUGCFolder() {
-  Desktop desktop = Desktop.getDesktop();
+  //Desktop desktop = Desktop.getDesktop();
   File dirToOpen = null;
   try {
     dirToOpen = new File(appdata+"/CBi-games/skinny mann/UGC/levels");
-    desktop.open(dirToOpen);
+    //desktop.open(dirToOpen);
   }
   catch (Throwable iae) {
     System.out.println("folder Not Found, creating folder");
@@ -2203,7 +2202,7 @@ void handleError(Throwable e) {
     stack+=elements[ele].toString()+"\n";
   }
   stack+="\nyou may wish to take a screenshot of this window and resport this as an issue on github";
-  JOptionPane.showMessageDialog(null, stack, e.toString(), JOptionPane.ERROR_MESSAGE);
+  //JOptionPane.showMessageDialog(null, stack, e.toString(), JOptionPane.ERROR_MESSAGE);
   exit(-1);
 }
 
@@ -2506,11 +2505,11 @@ String formatMillis(int millis) {
 
 void programLoad() {
   println("loading discord icon");
-  discordIcon=loadImage("data/assets/discord.png");
+  discordIcon=loadImage("assets/discord.png");
   discordIcon.resize((int)(50*Scale), (int)(50*Scale));
 
   println("loading 3D coin modle");
-  coin3D=loadShape("data/modles/coin/tinker.obj");
+  coin3D=loadShape("modles/coin/tinker.obj");
   coin3D.scale(3);
 
   println("loading settings");
@@ -2563,76 +2562,77 @@ void programLoad() {
   println("initlizing sound handler");
   soundHandler =new SoundHandler(musicTracks, sfxTracks, this);
   soundHandler.setMusicVolume(0);
-  
+  /*
   println("starting to load tutorial audio tracks");
-  tutorialNarration[0][0]=new SoundFile(this, "data/sounds/tutorial/T1a.wav");
+  tutorialNarration[0][0]=new SoundFile(this, "sounds/tutorial/T1a.wav");
   println("loaded tutorial audio track T1a");
-  tutorialNarration[0][1]=new SoundFile(this, "data/sounds/tutorial/T2a.wav");
+  tutorialNarration[0][1]=new SoundFile(this, "sounds/tutorial/T2a.wav");
   println("loaded tutorial audio track T2a");
-  tutorialNarration[0][2]=new SoundFile(this, "data/sounds/tutorial/T3.wav");
+  tutorialNarration[0][2]=new SoundFile(this, "sounds/tutorial/T3.wav");
   println("loaded tutorial audio track T3");
-  tutorialNarration[0][3]=new SoundFile(this, "data/sounds/tutorial/T4a.wav");
+  tutorialNarration[0][3]=new SoundFile(this, "sounds/tutorial/T4a.wav");
   println("loaded tutorial audio track T4a");
-  tutorialNarration[0][4]=new SoundFile(this, "data/sounds/tutorial/T5a.wav");
+  tutorialNarration[0][4]=new SoundFile(this, "sounds/tutorial/T5a.wav");
   println("loaded tutorial audio track T5a");
-  tutorialNarration[0][5]=new SoundFile(this, "data/sounds/tutorial/T6a.wav");
+  tutorialNarration[0][5]=new SoundFile(this, "sounds/tutorial/T6a.wav");
   println("loaded tutorial audio track T6a");
-  tutorialNarration[0][6]=new SoundFile(this, "data/sounds/tutorial/T7.wav");
+  tutorialNarration[0][6]=new SoundFile(this, "sounds/tutorial/T7.wav");
   println("loaded tutorial audio track T7");
-  tutorialNarration[0][7]=new SoundFile(this, "data/sounds/tutorial/T8a.wav");
+  tutorialNarration[0][7]=new SoundFile(this, "sounds/tutorial/T8a.wav");
   println("loaded tutorial audio track T8a");
-  tutorialNarration[0][8]=new SoundFile(this, "data/sounds/tutorial/T9a.wav");
+  tutorialNarration[0][8]=new SoundFile(this, "sounds/tutorial/T9a.wav");
   println("loaded tutorial audio track T9a");
-  tutorialNarration[0][9]=new SoundFile(this, "data/sounds/tutorial/T10.wav");
+  tutorialNarration[0][9]=new SoundFile(this, "sounds/tutorial/T10.wav");
   println("loaded tutorial audio track T10");
-  tutorialNarration[0][10]=new SoundFile(this, "data/sounds/tutorial/T11.wav");
+  tutorialNarration[0][10]=new SoundFile(this, "sounds/tutorial/T11.wav");
   println("loaded tutorial audio track T11");
-  tutorialNarration[0][11]=new SoundFile(this, "data/sounds/tutorial/T12.wav");
+  tutorialNarration[0][11]=new SoundFile(this, "sounds/tutorial/T12.wav");
   println("loaded tutorial audio track T12");
-  tutorialNarration[0][12]=new SoundFile(this, "data/sounds/tutorial/T13.wav");
+  tutorialNarration[0][12]=new SoundFile(this, "sounds/tutorial/T13.wav");
   println("loaded tutorial audio track T13");
-  tutorialNarration[0][13]=new SoundFile(this, "data/sounds/tutorial/T14a.wav");
+  tutorialNarration[0][13]=new SoundFile(this, "sounds/tutorial/T14a.wav");
   println("loaded tutorial audio track T14a");
-  tutorialNarration[0][14]=new SoundFile(this, "data/sounds/tutorial/T15.wav");
+  tutorialNarration[0][14]=new SoundFile(this, "sounds/tutorial/T15.wav");
   println("loaded tutorial audio track T15");
-  tutorialNarration[0][15]=new SoundFile(this, "data/sounds/tutorial/T16.wav");
+  tutorialNarration[0][15]=new SoundFile(this, "sounds/tutorial/T16.wav");
   println("loaded tutorial audio track T16");
-  tutorialNarration[0][16]=new SoundFile(this, "data/sounds/tutorial/T17.wav");
+  tutorialNarration[0][16]=new SoundFile(this, "sounds/tutorial/T17.wav");
   println("loaded tutorial audio track T17");
-  tutorialNarration[1][0]=new SoundFile(this, "data/sounds/tutorial/T1b.wav");
+  tutorialNarration[1][0]=new SoundFile(this, "sounds/tutorial/T1b.wav");
   println("loaded tutorial audio track T1b");
-  tutorialNarration[1][1]=new SoundFile(this, "data/sounds/tutorial/T2b.wav");
+  tutorialNarration[1][1]=new SoundFile(this, "sounds/tutorial/T2b.wav");
   println("loaded tutorial audio track T2b");
-  tutorialNarration[1][2]=new SoundFile(this, "data/sounds/tutorial/T3.wav");
+  tutorialNarration[1][2]=new SoundFile(this, "sounds/tutorial/T3.wav");
   println("loaded tutorial audio track T3");
-  tutorialNarration[1][3]=new SoundFile(this, "data/sounds/tutorial/T4b.wav");
+  tutorialNarration[1][3]=new SoundFile(this, "sounds/tutorial/T4b.wav");
   println("loaded tutorial audio track T4b");
-  tutorialNarration[1][4]=new SoundFile(this, "data/sounds/tutorial/T5b.wav");
+  tutorialNarration[1][4]=new SoundFile(this, "sounds/tutorial/T5b.wav");
   println("loaded tutorial audio track T5b");
-  tutorialNarration[1][5]=new SoundFile(this, "data/sounds/tutorial/T6b.wav");
+  tutorialNarration[1][5]=new SoundFile(this, "sounds/tutorial/T6b.wav");
   println("loaded tutorial audio track T6b");
-  tutorialNarration[1][6]=new SoundFile(this, "data/sounds/tutorial/T7.wav");
+  tutorialNarration[1][6]=new SoundFile(this, "sounds/tutorial/T7.wav");
   println("loaded tutorial audio track T7");
-  tutorialNarration[1][7]=new SoundFile(this, "data/sounds/tutorial/T8b.wav");
+  tutorialNarration[1][7]=new SoundFile(this, "sounds/tutorial/T8b.wav");
   println("loaded tutorial audio track T8b");
-  tutorialNarration[1][8]=new SoundFile(this, "data/sounds/tutorial/T9b.wav");
+  tutorialNarration[1][8]=new SoundFile(this, "sounds/tutorial/T9b.wav");
   println("loaded tutorial audio track T9b");
-  tutorialNarration[1][9]=new SoundFile(this, "data/sounds/tutorial/T10.wav");
+  tutorialNarration[1][9]=new SoundFile(this, "sounds/tutorial/T10.wav");
   println("loaded tutorial audio track T10");
-  tutorialNarration[1][10]=new SoundFile(this, "data/sounds/tutorial/T11.wav");
+  tutorialNarration[1][10]=new SoundFile(this, "sounds/tutorial/T11.wav");
   println("loaded tutorial audio track T11");
-  tutorialNarration[1][11]=new SoundFile(this, "data/sounds/tutorial/T12.wav");
+  tutorialNarration[1][11]=new SoundFile(this, "sounds/tutorial/T12.wav");
   println("loaded tutorial audio track T12");
-  tutorialNarration[1][12]=new SoundFile(this, "data/sounds/tutorial/T13.wav");
+  tutorialNarration[1][12]=new SoundFile(this, "sounds/tutorial/T13.wav");
   println("loaded tutorial audio track T13");
-  tutorialNarration[1][13]=new SoundFile(this, "data/sounds/tutorial/T14b.wav");
+  tutorialNarration[1][13]=new SoundFile(this, "sounds/tutorial/T14b.wav");
   println("loaded tutorial audio track T14b");
-  tutorialNarration[1][14]=new SoundFile(this, "data/sounds/tutorial/T15.wav");
+  tutorialNarration[1][14]=new SoundFile(this, "sounds/tutorial/T15.wav");
   println("loaded tutorial audio track T15");
-  tutorialNarration[1][15]=new SoundFile(this, "data/sounds/tutorial/T16.wav");
+  tutorialNarration[1][15]=new SoundFile(this, "sounds/tutorial/T16.wav");
   println("loaded tutorial audio track T16");
-  tutorialNarration[1][16]=new SoundFile(this, "data/sounds/tutorial/T17.wav");
+  tutorialNarration[1][16]=new SoundFile(this, "sounds/tutorial/T17.wav");
   println("loaded tutorial audio track T17");
+  */
 
   println("starting physics thread");
   thread("thrdCalc2");

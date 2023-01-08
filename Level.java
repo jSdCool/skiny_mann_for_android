@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 class Level implements Serializable {
-  static skiny_mann source;
+  static skiny_mann_for_android source;
   public ArrayList<Stage> stages=new ArrayList<>();
   public ArrayList<LogicBoard> logicBoards=new ArrayList<>();
   public ArrayList<Boolean> variables=new ArrayList<>();
