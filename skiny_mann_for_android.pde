@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import android.os.Environment;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 
 
 void settings() {//first function called
@@ -2203,7 +2205,14 @@ void openUGCFolder() {
   File dirToOpen = null;
   try {
     dirToOpen = new File(appdata+"/CBi-games/skinny mann/UGC/levels");
-    //desktop.open(dirToOpen);
+    Uri selectedUri = Uri.parse(appdata+"/CBi-games/skinny mann/UGC/levels");
+    Intent intent = new Intent(Intent.ACTION_VIEW);
+    intent.setDataAndType(selectedUri, "resource/folder");
+    try{
+    startActivity(intent);
+    }catch(Exception e){
+     e.printStackTrace(); 
+    }
   }
   catch (Throwable iae) {
     System.out.println("folder Not Found, creating folder");
