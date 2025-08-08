@@ -11,10 +11,14 @@
     "x": 0,
     "y": 630,
     "type": "ground",
-    "group": -1
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": -1,
+    "rotateZ": 0
   },
   {
     "link Index": 5,
+    "linkZ": 0,
     "x": 280,
     "y": 580,
     "type": "interdimentional Portal",
@@ -29,7 +33,10 @@
     "x": 750,
     "y": 510,
     "type": "ground",
-    "group": -1
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": -1,
+    "rotateZ": 0
   },
   {
     "x": 980,

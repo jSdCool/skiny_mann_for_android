@@ -1,14 +1,124 @@
 if you get a trojan waring from windows defender check this link
 https://github.com/processing/processing4/wiki/Troubleshooting#viruses-and-trojans
 
+0.10.1_Early_Access
+
+
+0.10.0_Early_Access
+-changed: refactored many systems relating to component placement and loading, including stage components, logic components and entitiies
+-changed: the order of buttons in the level creator tool box has changed
+-changed: tool box buttons for logic components have had the text on them replaced with pictographic icons
++added: a new icon for the goon entity button
++added: ability to rotate usualy solid level components
++added: sloaps in 3D mode
++added: new save icon for level creator
++added: level-15
++added: level-16
+
+0.9.2_Early_Access
+-fixed: changing the resolution setting would save the incorrect values for screen width and height
+-changed: text boxes in level creator have been updated to the new text box system
+
+0.9.1_Early_Access
+-fixed: all music after the first music track would ignore the set volume
+-changed: 3D Shadow setting now has 5 values
+-changed: settings version has been increased
++added: new shadow type
++added: loading text to startup logo
+-fixed: auto key repeat when holding down a key and typing
+-changed: new multiplayer networking system
++added: new debug info line, current multiplayer ping
+-changed: Collision hitboxes are now pre grouped into combo boxes before collisions are calculated 
+-changed: 3D camera now collides with things between its default position and the player
+-fixed: moving in and out in 3D mode remaining active when the corresponding button was held as the player was transitioning out of 3D moe
+-fixed: most font glyphs disappearing when certain letters were typed in a text box (may not have effected release builds)
+-changed: updated many text entering fields to now be text boxes
++added: adjustable 3D FOV
++added: new setting Camera FOV
+-fixed: level creator not saving the correct version
+-changed: reduced then number of enemies in level 13 and 14
+-fixed: FPS text rendering over debug text
+
+0.9.0_Early_Access
+-changed: new collision detection system
++added: new NPC system
++added: NPC enemy Goon
++added: level 13
+-fixed: check point preview no being in correct position while on 3D stage
+-fixed: HUD not being renderd on top of level in 3D while in the level creator
++added: level 14
+-fixed: game sounds ignoring the set sound volume
+
+0.8.2_Early_Access
+-fixed: coin placement preview was too small in 3D stages
++changed: automatic update installer is now available on Mac OS for future versions
+-fixed: settings menu titles attempting to displaying above the window
+-fixed: default level creator author name not being presistant through game restarts
+-changed: capitlized text on certan buttons
+-changed: reduced certain strage components overscan
+
+0.8.1_Early_Access
++added: Universal error handler (crashes will now always show an error window)
++added: grid mode indicator in level creator
+-fixed: tutorial crashing on unix based systems
++added: new sound type: narration
+-changed: setting version is now 4
++added: new setting narration volume
++added: new settings page: sound
+-changed: narration mode setting is now under the sound page
+-changed: when adding a sound in the level creator there is now a choice between narration and normal sound
+-changed: all previously added sounds will be treated as narrations by default
++added: narration "notification" when a narration sound is playing and the narration volume is less then 20
++added: 3D Blueprints in level creator
+-changed: new level complete sound (thanks SuperTylerMan)
++added: new setting disable menu transitions
++added: new setting default level creator author name
+-fixed: level progression bug
++changed: automatic update installer is now available on linux for future versions
++changed: new version of automatic updater, now with new options
+
+0.8.0_Early_Access
+-fixed: update screen button not being centered at all resolutions
++added: integrated level creator into game
+-changed: error window that pops up when the game crashes is now always on top
+-changed: level creator now stores content created by the user in appdata or equivalent
+-fixed: "grass" on main menu and level select screen is now properly rendered based on the screen size rather then fixed position
+-fixed: spelling of shadows in settings
+-changed: finally updated buttons on pause menu
+-changed: improved UI scaling
+-fixed: startup logo randomly loosing texture
+-fixed: player number not being reset when leaving multiplayer
++added: menu transitions
+-changed: sliders in settings have been upgraded
+-changed: upgraded sound systems, all in level sounds now follow sound volume set in settings
+-removed: old music
+-added: mew music (thanks SuperTylerMan)
+-changed: in the logic board editor active logic connections are new red
+-added: tick logic board button to variables and groups page of tool box
+-changed: glitch effect is now a bit different
+-fixed: if you tried to stop playing a level when dead it would put you back in after the respawn cool down
+-fixed: portals that transport between 2D and 3D not saving the z position of the destination
+-removed: discord icon on main menu
++added: level-11
+-fixed: crashed caused when placing a blueprint and the coins in the blueprint hologram collided with the player
+-changed: play sound logic component now outputs whether the sound is playing or queued
+-added: level-12
+
+0.7.1_Early_Access
+-fixed: max and min players werer reversed level info display for co-op levels
+-fixed: level complete would still show in new levels once a CO-PO level was completed
++added: waiting for clients message after play is clicked in multyplayer
++added: support for UGC levels in multyplayer
+-fixed: game would crash if while entering the multyplayer port you tried to backspace while the port was set to 0
+
 0.7.0_Early_Access
 -fixed: verticle blipping. as a consequence the max verticle scroll location is now 320
 -changed: CBI sphere texture
 -fixed: 3D switches not scaling properly with resolutions
 -changed: settings/progrss/UGC is now stored in users home directory on mac/linux
--added: multyplayer. now with 2 modes
--added: co-op_1 multyplayer level
--added: co-op_2 multyplayer level
++added: multyplayer. now with 2 modes
++added: co-op_1 multyplayer level
++added: co-op_2 multyplayer level
 -changed: prbly some outher things I don't remember
 
 0.6.2_Early_Access
@@ -16,9 +126,9 @@ https://github.com/processing/processing4/wiki/Troubleshooting#viruses-and-troja
 -changed: reduced respawn cooldown
 
 0.6.1_Early_Access
--added: update installer(windows only)
++added: update installer(windows only)
 -fixed: player being able to move in the z-axis when dide in stage 2 before getting the checkpoint
--added: 3D logic controlls
++added: 3D logic controlls
 -changed: removed giant triangle at start of level-2
 -changed: spawn position in level 5
 
@@ -26,10 +136,10 @@ https://github.com/processing/processing4/wiki/Troubleshooting#viruses-and-troja
 
 0.6.0_Early_Access
 -changed: upgraded Button to 1.2.0
--added: logic to levels
--added: level-9
--added: level-10
--added: logic interactive buttons
++added: logic to levels
++added: level-9
++added: level-10
++added: logic interactive buttons
 -changed: fatal error handling imporoved
 -changed: improved main menue buttons
 
@@ -37,18 +147,18 @@ https://github.com/processing/processing4/wiki/Troubleshooting#viruses-and-troja
 0.5.0_Early_Access
 -changed: doubled movemet speed
 -changed: jumping/gravity is now more reslistic 
--added: signs
--added: changable sky color
--added: sound hit boxes
--added: level-7
--added: level-8
++added: signs
++added: changable sky color
++added: sound hit boxes
++added: level-7
++added: level-8
 -fixed: parts of levels randomly bliping up
 -fixed: sound file would not get set while loading settings
--added: sign to level 5 explaining how to move back and forth in 3D
--added: platform in level 4 to assist with first jump
--added: user generated levels now muct be of a compatible game version
--changed: default screen srcolling locations
--added: information to the "options" menue during the tutorial
++added: sign to level 5 explaining how to move back and forth in 3D
++added: platform in level 4 to assist with first jump
++added: user generated levels now muct be of a compatible game version
+-changed: default screen srcolling locations+
++added: information to the "options" menue during the tutorial
 
 0.4.3_Early_Access
 -changed: file paths now compatible with linux
@@ -58,22 +168,22 @@ https://github.com/processing/processing4/wiki/Troubleshooting#viruses-and-troja
 
 0.4.2_Early_Access
 -fixed: game crash when trying to view UGC levels when the folder does not exsist.
--added: if a fatal error occors then a window will pop up with the error
++added: if a fatal error occors then a window will pop up with the error
 
 0.4.1_Early_Access
 -fixed: tutorial no longer contributes to progress
--added: user generated levels
++added: user generated levels
 
 0.4.0_Early_Access
 -changed: JSON Arrays are no longer used internally for storing game objects and processing calculations  
 -human seek: massively improved performance   
--added: 3D shadow  
++added: 3D shadow  
 -changed: when standing at a portal the text "Press E" now appears in your face  
 -removed: how to play menu  
 -added: narrated tutorial   
 -changed: main menu now says Early Access  
--added: 3D shadow setting  
--added: tutorial narration mode setting  
++added: 3D shadow setting  
++added: tutorial narration mode setting  
 
 0.3.1_ALFA
 -fixed: progress file would not be created if it did not exist
