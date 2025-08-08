@@ -1,6 +1,9 @@
+//start of startup_logo.pde
+
+//various global vars related to the startup logo
 int ptsW, ptsH;
 
-PImage img;
+PImage img;//!!!!!!! prbly should not have this here, or named that
 
 int numPointsW;
 int numPointsH_2pi;
@@ -10,35 +13,71 @@ float[] coorX;
 float[] coorY;
 float[] coorZ;
 float[] multXZ;
-float logorx=-75, logory=-180, logorz=0, start_wate=0;
-void drawlogo() {
+float logorx=-75, logory=-180, logorz=0, start_wate=0;//logo rotation info
+
+boolean skipFrameInumeration = true;//used to not consiter a frame as time passed if that frame prbly took too long
+int startupMillisTimer =0,prevstartupMillis=0;
+
+PShape CBiSphere;
+/**Render the statrup logo
+@param controllCamera If this function should controll the position of the camera
+@param setBackground If this function should set the background color
+*/
+void drawlogo(boolean controllCamera, boolean setBackground) {
+  //basic bitch lighting
   directionalLight(255, 255, 255, 1, 0.8, -1);
   ambientLight(102, 102, 102);
 
-
-  background(0);
-  if (logorx<0) {
-    logorx+=(1.0/frameRate)*25;
-  } else {
-    fill(#03FA0C);
-    textSize(100*Scale);
-    textAlign(CENTER, CENTER);
-    text("GAMES", width/2, height/2+height/3);
-    start_wate+=1.0/frameRate;
+  if (setBackground) {
+    background(0);
   }
+  if(!skipFrameInumeration){//if we should skip the time this frame took
+    startupMillisTimer = millis()-prevstartupMillis;//calculate how long the last frame took
+  }else{
+    skipFrameInumeration = false;//reset the startup timer
+    startupMillisTimer = 0;
+  }
+  
+  if (logorx<0) { //if the logo has not rotated all the way yet
+    logorx+=(startupMillisTimer/1000.0)*25;//increase its rotation by an ammount based on how long it took to render the last frame
+  } else {
+    //if the logo has rotated all the way
+    fill(#03FA0C);
+    
+    logoText.draw();//draw the text under the logo
+    //it might be a good idea to check and make sure this scales properly
+    start_wate+=startupMillisTimer/1000.0; // add to the logo waiting timer, usually there is no loading gogin on so we just wait to make thing more interesting
+  }
+  
+  prevstartupMillis = millis();//save the time the last frame was at
   fill(255);
-  camera(width/2, height/2, 720, width/2, height/2, 0, 0, 1, 0);
+  if (controllCamera){//set the camera pos if requested
+    camera(width/2, height/2, 623.5382907, width/2, height/2, 0, 0, 1, 0);
+  }
 
+  //set the background color and loading text if requested
+  if(setBackground){
+    textSize(30);
+    textAlign(CENTER,TOP);
+    text("Loading ...",width/2,height/2-300);
+  }
+  
+  //move and rotating into place for the logo
   pushMatrix();
   translate(width/2, height/2, 0);
   rotateZ(radians(logorz));
   rotateX(radians(logorx));
   rotateY(radians(logory));
-
-  textureSphere(200, 200, 200, CBi);
+  //render the logo
+  shape(CBiSphere, 0, 0);
+  //reset the draw position
   popMatrix();
 }
 
+/**Initilize the verticies for the startup logo
+@param numPtsW The number of points arround the width
+@param numPtsH_2pi How many points arround the sphere not jiust from top to bottom, not entirrly sure what this means 
+*/
 void initializeSphere(int numPtsW, int numPtsH_2pi) {
 
   // The number of points around the width and height
@@ -73,15 +112,24 @@ void initializeSphere(int numPtsW, int numPtsH_2pi) {
   }
 }
 
+/**Create the PShape CBiSphere and fill it with a spehere textured by the provided image
+@param rx X radius of the sphere
+@param ry Y radius of the sphere
+@param rz Z radius of the sphere
+@param t The image to put on the sphere
+*/
 void textureSphere(float rx, float ry, float rz, PImage t) {
   // These are so we can map certain parts of the image on to the shape
   float changeU=t.width/(float)(numPointsW-1);
   float changeV=t.height/(float)(numPointsH-1);
   float u=0;  // Width variable for the texture
   float v=0;  // Height variable for the texture
+  //create the output shape
+  CBiSphere = createShape();
 
-  beginShape(TRIANGLE_STRIP);
-  texture(t);
+  CBiSphere.beginShape(TRIANGLE_STRIP);
+  CBiSphere.noStroke();
+  CBiSphere.texture(t);//apply the texture to the sphere
   for (int i=0; i<(numPointsH-1); i++) {  // For all the rings but top and bottom
     // Goes into the array here instead of loop to save time
     float coory=coorY[i];
@@ -91,14 +139,15 @@ void textureSphere(float rx, float ry, float rz, PImage t) {
     float multxzPlus=multXZ[i+1];
 
     for (int j=0; j<numPointsW; j++) { // For all the pts in the ring
-      normal(-coorX[j]*multxz, -coory, -coorZ[j]*multxz);
-      vertex(coorX[j]*multxz*rx, coory*ry, coorZ[j]*multxz*rz, u, v);
-      normal(-coorX[j]*multxzPlus, -cooryPlus, -coorZ[j]*multxzPlus);
-      vertex(coorX[j]*multxzPlus*rx, cooryPlus*ry, coorZ[j]*multxzPlus*rz, u, v+changeV);
+      CBiSphere.normal(-coorX[j]*multxz, -coory, -coorZ[j]*multxz);
+      CBiSphere.vertex(coorX[j]*multxz*rx, coory*ry, coorZ[j]*multxz*rz, u, v);
+      CBiSphere.normal(-coorX[j]*multxzPlus, -cooryPlus, -coorZ[j]*multxzPlus);
+      CBiSphere.vertex(coorX[j]*multxzPlus*rx, cooryPlus*ry, coorZ[j]*multxzPlus*rz, u, v+changeV);
       u+=changeU;
     }
     v+=changeV;
     u=0;
   }
-  endShape();
+  CBiSphere.endShape();//close the shape
 }
+//end of startup_logo.pde

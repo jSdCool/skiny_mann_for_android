@@ -13,7 +13,10 @@
     "y": 670,
     "z": 0,
     "type": "ground",
-    "group": -1
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": -1,
+    "rotateZ": 0
   },
   {
     "x": 210,
@@ -32,7 +35,10 @@
     "y": 520,
     "z": 0,
     "type": "ground",
-    "group": 0
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": 0,
+    "rotateZ": 0
   },
   {
     "dx": 30,
@@ -43,7 +49,10 @@
     "y": 520,
     "z": 0,
     "type": "ground",
-    "group": 0
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": 0,
+    "rotateZ": 0
   },
   {
     "dx": 140,
@@ -54,6 +63,93 @@
     "y": 520,
     "z": 0,
     "type": "ground",
-    "group": 0
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": 0,
+    "rotateZ": 0
+  },
+  {
+    "dx": 670,
+    "color": -16732415,
+    "dy": 10,
+    "dz": 470,
+    "x": 860,
+    "y": 680,
+    "z": -200,
+    "type": "ground",
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": -1,
+    "rotateZ": 0
+  },
+  {
+    "dx": 10,
+    "color": -7254783,
+    "dy": 310,
+    "dz": 450,
+    "x": 860,
+    "y": 370,
+    "z": -190,
+    "type": "ground",
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": -1,
+    "rotateZ": 0
+  },
+  {
+    "dx": 670,
+    "color": -7254783,
+    "dy": 310,
+    "dz": 10,
+    "x": 860,
+    "y": 370,
+    "z": -200,
+    "type": "ground",
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": -1,
+    "rotateZ": 0
+  },
+  {
+    "dx": 10,
+    "color": -7254783,
+    "dy": 310,
+    "dz": 450,
+    "x": 1520,
+    "y": 370,
+    "z": -190,
+    "type": "ground",
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": -1,
+    "rotateZ": 0
+  },
+  {
+    "dx": 670,
+    "color": -7254783,
+    "dy": 310,
+    "dz": 10,
+    "x": 860,
+    "y": 370,
+    "z": 260,
+    "type": "ground",
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": -1,
+    "rotateZ": 0
+  },
+  {
+    "dx": 460,
+    "color": -7254783,
+    "dy": 10,
+    "dz": 80,
+    "x": 400,
+    "y": 615,
+    "z": 7,
+    "type": "ground",
+    "rotateX": 0,
+    "rotateY": 0,
+    "group": -1,
+    "rotateZ": 0
   }
 ]
