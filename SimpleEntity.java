@@ -184,7 +184,7 @@ public class SimpleEntity extends StageEntity{
   @param context The context of the render
   @param render The surface to draw to
   */
-  public void draw(skiny_mann context,PGraphics render){
+  public void draw(skiny_mann_for_android context,PGraphics render){
     render.fill(40);
     render.rect(context.Scale*(x-context.drawCamPosX),context.Scale*(y+context.drawCamPosY),40*context.Scale,40*context.Scale);
     if(m.left()){
@@ -210,7 +210,7 @@ public class SimpleEntity extends StageEntity{
   @param context The context of the renders
   @param render The surface to draw to
   */
-  public void draw3D(skiny_mann context,PGraphics render){
+  public void draw3D(skiny_mann_for_android context,PGraphics render){
     render.fill(40);
     render.translate(x+20,y+20,z+20);
     render.box(40);

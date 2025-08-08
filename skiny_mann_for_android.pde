@@ -1,4 +1,4 @@
-import processing.sound.*;//import the stuffs
+import processing.sound.*; //import the stuffs
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -2176,7 +2176,7 @@ void mouseClicked() {// when you click the mouse
 
           if (newFileType.equals("sound")) {
             if (chooseFileButton.isMouseOver()) {//choose file button for when the type is sound
-              selectInput("select audio file: .WAV .AIF .MP3:", "fileSelected");//open file selection diaglog
+              //skiny_mann_for_android selectInput("select audio file: .WAV .AIF .MP3:", "fileSelected");//open file selection diaglog
             }
             if(lc_newSoundAsSoundButton.isMouseOver()){//sound button
               newSoundAsNarration=false;
@@ -4655,7 +4655,7 @@ void  initButtons() {
 String getLevelHash(String path) {
   String basePath="";
   if (path.startsWith("data")) {//check for levels that are bundled with the sketch (their paths will begin with data/)
-    basePath=sketchPath()+"/"+path;//prepend the sketch path to the path of local levels
+    basePath=sketchPath("")+"/"+path;//prepend the sketch path to the path of local levels
   } else {
     basePath=path;
   }

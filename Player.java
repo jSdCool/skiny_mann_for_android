@@ -8,7 +8,7 @@ public class Player extends Entity implements Serialization {
   public float x, y, z=0, scale, animationCooldown, verticalVelocity=0;
   private final float arbitrayNumber=0.0023f;//slight adjustemnt to the hitboxes just to make shure all collisions are as accurate as posible
   public int pose=1, stage=0;
-  public transient static skiny_mann source;
+  public transient static skiny_mann_for_android source;
   int shirt;
   boolean jumping=false, in3D;
   String name="";
@@ -218,8 +218,8 @@ public class Player extends Entity implements Serialization {
   }
   
   //mabby implment theese later
-  public void draw(skiny_mann context,PGraphics render){}
-  public void draw3D(skiny_mann context,PGraphics render){}
+  public void draw(skiny_mann_for_android context,PGraphics render){}
+  public void draw3D(skiny_mann_for_android context,PGraphics render){}
   
   public Entity create(float x,float y,float z){return null;}//why does this function exsist? its not in the entity class
   

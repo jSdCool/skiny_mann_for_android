@@ -78,11 +78,11 @@ abstract public class Entity{
   @param context The context of the render
   @param render The surface to draw to
   */
-  public abstract void draw(skiny_mann context,PGraphics render);
+  public abstract void draw(skiny_mann_for_android context,PGraphics render);
   /**Render the 3D representation of this entity.<br>
   NOTE: this method may be called more then once per frame
   @param context The context of the renders
   @param render The surface to draw to
   */
-  public abstract void draw3D(skiny_mann context,PGraphics render);
+  public abstract void draw3D(skiny_mann_for_android context,PGraphics render);
 }

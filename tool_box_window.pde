@@ -11,7 +11,7 @@ class ToolBox extends PApplet {
   public ToolBox(int miliOffset) {
     super();//setup the papplet
     //create the new window using this as the base for that window
-    PApplet.runSketch(new String[]{this.getClass().getName()}, this);
+    //PApplet.runSketch(new String[]{this.getClass().getName()}, this);
     millisOffset=miliOffset;
   }
 

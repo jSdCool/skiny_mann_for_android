@@ -55,7 +55,7 @@ public class SoundHandler extends Thread {
     }  catch(Exception i) {
       System.out.println("the sound handler ran into an error");
       i.printStackTrace();
-      ((skiny_mann)ggn).handleError(i);
+      ((skiny_mann_for_android)ggn).handleError(i);
     }
   }
   

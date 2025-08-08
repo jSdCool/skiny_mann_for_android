@@ -5,7 +5,7 @@ public class UniversalErrorManager{
   /**Initilize the universal error handler setting it as the default error handler in this jvm
   @param source The object that contains the actual error handling code, this just catches the error
   */
-  public static void init(skiny_mann source){
+  public static void init(skiny_mann_for_android source){
     Thread.setDefaultUncaughtExceptionHandler( new Thread.UncaughtExceptionHandler() {
       public void uncaughtException(Thread t, Throwable e)//catch execeotiosn from any thread
           {

@@ -236,9 +236,9 @@ public class UiTextBox{
         shiftPressed = true;
       }
       
-      if(keyCode == PApplet.CONTROL){//the ctrl key is pressed
-        controlPressed = true;
-      }
+      //if(keyCode == PApplet.CONTROL){//the ctrl key is pressed
+      //  controlPressed = true;
+      //}
       boolean pasting =false;
       if(controlPressed){//if the ctrl key is pressed
         //apperently while holding controll the letters on the keyboard report them sefs as their possiotn in the alphabet.
@@ -326,9 +326,9 @@ public class UiTextBox{
       if(keyCode == PApplet.SHIFT){// if shift
         shiftPressed = false;
       }
-      if(keyCode == PApplet.CONTROL){//if ctrl
-        controlPressed = false;
-      }
+      //if(keyCode == PApplet.CONTROL){//if ctrl
+      //  controlPressed = false;
+      //}
     }
   }
   

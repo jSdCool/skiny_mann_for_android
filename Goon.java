@@ -153,7 +153,7 @@ public class Goon extends StageEntity{
   @param context The context of the render
   @param render The surface to draw to
   */
-  public void draw(skiny_mann context,PGraphics render){
+  public void draw(skiny_mann_for_android context,PGraphics render){
     float localX = x-context.drawCamPosX;
     float loaclY = y+context.drawCamPosY;
     float Scale = context.Scale;
@@ -194,7 +194,7 @@ public class Goon extends StageEntity{
   @param context The context of the renders
   @param render The surface to draw to
   */
-  public void draw3D(skiny_mann context,PGraphics render){
+  public void draw3D(skiny_mann_for_android context,PGraphics render){
     
   }
   
