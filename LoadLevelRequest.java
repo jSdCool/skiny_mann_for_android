@@ -32,6 +32,9 @@ public class LoadLevelRequest extends DataPacket {
     path = iterator.getString();
     hash = iterator.getString();
     id = iterator.getInt();
+    if(path.startsWith("data/")){
+      path = path.substring("data/".length());
+    }
   }
   
   /**Convert this component to a byte representation that can be sent over the network or saved to a file.<br>

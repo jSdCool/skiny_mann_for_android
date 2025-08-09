@@ -500,6 +500,8 @@ Identifier currentlyPlaceing = null;
 //===================================================
 //reserverd for other external var decaliresion
 
+String errorText = "";
+boolean errorScreen = false;
 
 
 //end of vars.pde

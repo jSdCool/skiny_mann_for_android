@@ -194,6 +194,7 @@ public class UiTextBox{
     if(typing){
       int keyCode = ui.getSource().keyCode;
       char key =  ui.getSource().key;
+      System.out.println("boxKeyPressed: "+key+" "+keyCode);
       if(keyCode == PApplet.LEFT && cursorPos > 0){//if the left arrow button is pressed and the cursor can be moved left
         cursorPos--;
         //hilight stuff
@@ -292,21 +293,20 @@ public class UiTextBox{
         return;
       }
       
-      if(highLighting && (key == PApplet.BACKSPACE || key == PApplet.DELETE)){//backspace / delete and hilighting
+      if(highLighting && (keyCode == PApplet.BACKSPACE || keyCode == PApplet.DELETE)){//backspace / delete and hilighting
         contence = contence.substring(0,highLightStart) + contence.substring(highLightEnd,contence.length());//remove the hilighted content
         cursorPos = highLightStart;
         highLighting=false;
         return;
       }
-      
-      if(key == PApplet.BACKSPACE){//if backspace
+      if(keyCode == PApplet.BACKSPACE){//if backspace
         if(cursorPos!=0){//and the cursor is not at the start of the content
           contence = contence.substring(0,cursorPos-1) + contence.substring(cursorPos,contence.length());//remove the char before the cursor
           cursorPos--;//move the cursor back 1
         }
         return;
       }
-      if(key == PApplet.DELETE){//if delete
+      if(keyCode == PApplet.DELETE){//if delete
         if(cursorPos!=contence.length()){//if not at the end of the content
           contence = contence.substring(0,cursorPos) + contence.substring(cursorPos+1,contence.length());//remove the char after the cursor
         }
@@ -372,6 +372,8 @@ public class UiTextBox{
       } else {//if the cursor is in the middle of the contence
         contence = contence.substring(0,cursorPos) + key + contence.substring(cursorPos,contence.length());
       }
+      ui.getSource().key = 0;
+      ui.getSource().keyCode = 0;
       cursorPos++;
     }
   }

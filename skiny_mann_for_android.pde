@@ -149,6 +149,11 @@ void draw() {// the function that is called every frame
     initDepthBuffer();//initilize the depth buffer (this is what causes the game to freez on startup, it must be done on a thread with an opengl context)
     skipFrameInumeration = true;//for startup logo animarion purpuses dont advance the animation for a frame becaus if extream lag
   }
+  
+  if(errorScreen){
+    drawErrorScreen();
+    return;
+  }
 
 
   try {//catch all fatal errors and display them
@@ -2352,6 +2357,16 @@ void keyPressed() {// when a key is pressed
     if (!menue && tutorialMode && key == ESC && tutorialPos<3) {//if escape is pressed and in the start of the turial
       exit(1);//close the game
     }
+    if(errorScreen){
+      return;
+    }
+    
+    if(!Character.isISOControl(key)){
+      Character.UnicodeBlock block = Character.UnicodeBlock.of(key);
+      if(block != null && block != Character.UnicodeBlock.SPECIALS){
+        keyTyped();
+      }
+    }
 
     if (inGame || (levelCreator && editingStage && simulating)) {//if in game or in the level creator editing a stage and not paused
       if (key == ESC && !levelCreator) {//if escape and not in the level creator
@@ -3908,14 +3923,24 @@ void handleError(Throwable e) {
   StackTraceElement[] elements = e.getStackTrace();
   String stack="";
   for (int ele=0; ele<elements.length; ele++) {//convert the stace trace elements inton a single string
-    stack+=elements[ele].toString()+"\n";
+    stack+=elements[ele].toString()+"\n  ";
   }
   stack+="\nyou may wish to take a screenshot of this window and resport this as an issue on github";
   //JFrame jf=new JFrame();
   //jf.setAlwaysOnTop(true);//make sure the error ends up on top of the game
   //JOptionPane.showMessageDialog(jf, stack, e.toString(), JOptionPane.ERROR_MESSAGE);//show the error to the user
   //TODO Error screen and kill physics
-  exit(-1);//close the game
+  //exit(-1);//close the game
+  errorText = e.toString();
+  errorText += "\n  "+stack;
+  inGame = false;
+  menue = false;
+  Menue = "error";
+  errorScreen = true;
+  if(soundHandler != null){
+    soundHandler.stopSounds();
+  }
+  loopThread2 = false;
 }
 
 /**Overrides the default exit function so that the program only closes when we actually want it to.<br>
@@ -4881,7 +4906,14 @@ void initText() {
 //===================================================
 //reserved for arcade edition vars
 
-
+void drawErrorScreen(){
+  background(255);
+  fill(0);
+  textSize(20);
+  textAlign(LEFT,TOP);
+  text("A Faital Error Occored!",20,10);
+  text(errorText,20,50);
+}
 
 //===================================================
 //DO NOT EDIT THEESE LINES, EVER
