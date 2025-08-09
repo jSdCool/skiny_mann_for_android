@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+//in androidmenufest.xml make sure android:largeHeap="true" is inside the application tag. this allow the music to be loaded
 
 
 /**First method called during initilization.<br>
@@ -1168,12 +1169,12 @@ void draw() {// the function that is called every frame
 
       }
     }
-    player1_moving_left=leftPressed;
-    player1_moving_right=rightPressed;
-    player1_jumping=jumpPressed;
+    playerMovementManager.setLeft(leftPressed);
+    playerMovementManager.setRight(rightPressed);
+    playerMovementManager.setJump(jumpPressed);
     E_pressed=usePressed;
-    WPressed=inPressed;
-    SPressed=outPressed;
+    playerMovementManager.setIn(inPressed);
+    playerMovementManager.setOut(outPressed);
 
     disEngageHUDPosition();//turn the HUD things off
   }
@@ -1210,12 +1211,14 @@ void draw() {// the function that is called every frame
 
 }
 
-
+void mouseClicked(){
+  mousePressed();
+}
 
 /**Automaticaly called when a mouse click is detected in the window.
 Executes on the render thread
 */
-void mouseClicked() {// when you click the mouse
+void mousePressed() {// when you click the mouse
 
   try {
     if (!levelCreator) {
@@ -2337,7 +2340,7 @@ void mouseClicked() {// when you click the mouse
 }
 
 void backPressed() {
-  key = 1;//simulate pressing ESC
+  key = ESC;//simulate pressing ESC
   keyPressed();
 }
 
@@ -2871,7 +2874,7 @@ void thrdCalc2() {
 /**Automaticaly called every time a mouse button is pressed down while this window is activated.<br>
 Execuated on the render thread.
 */
-void mousePressed() {
+void mousePressed1() {
   if (levelCreator) {//if in the level creator
     if (mouseButton==LEFT) {//if the button is the left button
       if (editingStage||editingBlueprint) {//if edditing a stage or blueprint
