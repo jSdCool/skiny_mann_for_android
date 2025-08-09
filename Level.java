@@ -1,3 +1,4 @@
+
 import processing.core.*;
 import processing.data.*;
 import java.util.ArrayList;
@@ -317,7 +318,7 @@ public class Level implements Serialization {//this is a big and important one
   public String getHash() {
     String basePath="";//figure out the base folder of the level
     if (source.rootPath.startsWith("data")) {
-      basePath=source.sketchPath()+"/"+source.rootPath;
+      basePath=source.sketchPath("")+"/"+source.rootPath;
     } else {
       basePath=source.rootPath;
     }

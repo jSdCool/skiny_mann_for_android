@@ -1,6 +1,6 @@
 import processing.core.*;
-import java.awt.*;
-import java.awt.datatransfer.*;
+//import java.awt.*;
+//import java.awt.datatransfer.*;
 /**An automatically scalling user interface text input box.
 This input box inplments features like: movable cursor, text hilighting (with keyboard), copy/pasting
 */
@@ -461,41 +461,42 @@ public class UiTextBox{
   @return The text content of the system clipboard
   */
   private String getTextFromClipboard (){
-    Object clipboardRawContent = getFromClipboard(DataFlavor.stringFlavor);
-    if(clipboardRawContent == null)
-      return "";
-    String text = (String) clipboardRawContent;
-    return text;
+    //Object clipboardRawContent/* = getFromClipboard(DataFlavor.stringFlavor)*/;
+    //if(clipboardRawContent == null)
+    //  return "";
+    //String text = (String) clipboardRawContent;
+    //return text;
+    return "";
   }
   
   /**Set the content of the system clipboard
   @param text The text to put on the system clipboard
   */
   private void setClipBoard(String text) {
-    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-    StringSelection stringSelection = new StringSelection(text);
-    clipboard.setContents(stringSelection, null);
+    //Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+    //StringSelection stringSelection = new StringSelection(text);
+    //clipboard.setContents(stringSelection, null);
   }
   
   /**Get the content of the system clip board
   @param flavor The specific type of data to try and get from the clipboard 
   @return The content of the clipboard
   */
-  private Object getFromClipboard (DataFlavor flavor) {
+  //private Object getFromClipboard (DataFlavor flavor) {
   
-    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); 
-    Transferable contents = clipboard.getContents(null);
-    Object object = null;
+  //  Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard(); 
+  //  Transferable contents = clipboard.getContents(null);
+  //  Object object = null;
   
-    if (contents != null && contents.isDataFlavorSupported(flavor)) {
-      try {
-        object = contents.getTransferData(flavor);
-      }catch (UnsupportedFlavorException e1){}
-      catch (java.io.IOException e2) {}
-    }
+  //  if (contents != null && contents.isDataFlavorSupported(flavor)) {
+  //    try {
+  //      object = contents.getTransferData(flavor);
+  //    }catch (UnsupportedFlavorException e1){}
+  //    catch (java.io.IOException e2) {}
+  //  }
   
-    return object;
-  }
+  //  return object;
+  //}
   
   /**Reset the state of this clipboard. Removing any hilight as well as stopping typing
   */

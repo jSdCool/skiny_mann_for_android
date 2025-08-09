@@ -25,6 +25,14 @@ void settings() {//first function called
   //setup the univertal error handler
   UniversalErrorManager.init(this);
   fullScreen(P3D);
+  
+}//after this setup will be called after more initilization happens like creating the window surface
+
+
+/**Second function called during initialization.<br>
+Used as the primary place to load and initilize things and spawn threads to load / initilize things, after the window has been created.
+*/
+void setup() {//seccond function called
   Context context = this.getActivity().getApplicationContext();
   appdata = context.getExternalFilesDir(null).toString();
   try {
@@ -41,13 +49,6 @@ void settings() {//first function called
     println("an error orrored in the settings function");
     handleError(e);
   }
-}//after this setup will be called after more initilization happens like creating the window surface
-
-
-/**Second function called during initialization.<br>
-Used as the primary place to load and initilize things and spawn threads to load / initilize things, after the window has been created.
-*/
-void setup() {//seccond function called
   try {
     frameRate(60);//set the FPS limit, note set this to a lerger number to get higher frame rates
     background(0);
@@ -2565,7 +2566,7 @@ void keyPressed() {// when a key is pressed
       shadowShaderOutputSampledDepthInfo = !shadowShaderOutputSampledDepthInfo;//toggle rednering depth buffer value on level instread of correct colors
     }
     if(keyCode == 106 && dev_mode){//F10 and dev mode
-      shadowShader = loadShader("data/shaders/shadowMapFrag.glsl","data/shaders/shadowMapVert.glsl");//reload shadow shader
+      shadowShader = loadShader("shaders/shadowMapFrag.glsl","shaders/shadowMapVert.glsl");//reload shadow shader
       println("Relaoded Shaders");
     }
 
@@ -3615,7 +3616,7 @@ void tutorialLogic() {
     playerMovementManager.setRight(false);
     playerMovementManager.setJump(false);
     if (!soundHandler.isNarrationPlaying(tutorialNarration[settings.getSoundNarrationMode()][currentTutorialSound])) {
-      loadLevel("data/levels/tutorial");
+      loadLevel("levels/tutorial");
       inGame=true;
       tutorialDrawLimit=3;
       currentTutorialSound=2;
@@ -4152,8 +4153,8 @@ void programLoad() {
   try{
     //do this first becasue it causes a momentary freez on the render thread that we want to avoid later in the animation
     println("loading shaders");
-    depthBufferShader = loadShader("shaders/depthBufferFrag.glsl","data/shaders/depthBufferVert.glsl");
-    shadowShader = loadShader("shaders/shadowMapFrag.glsl","data/shaders/shadowMapVert.glsl");
+    depthBufferShader = loadShader("shaders/depthBufferFrag.glsl","shaders/depthBufferVert.glsl");
+    shadowShader = loadShader("shaders/shadowMapFrag.glsl","shaders/shadowMapVert.glsl");
 
     requestDepthBufferInit = true;
     //this init can only happen on the main render thread because it requires an open Gl context

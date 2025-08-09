@@ -65,8 +65,8 @@ public class SimpleEntity extends StageEntity{
       public boolean out(){return az ==1;}
       public boolean jump(){return j;}
       public void reset(){
-        ax = (int)(r.nextInt(-1,2));
-        az = (int)(r.nextInt(-1,2));
+        ax = (int)(r.nextInt(3)-1);
+        az = (int)(r.nextInt(3)-1);
         j = (int)(Math.random()*2)==1;
       };
       

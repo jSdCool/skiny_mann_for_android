@@ -1,1 +1,1 @@
-data/sounds/Level Complete Sound Effect.wav
+sounds/Level Complete Sound Effect.wav
