@@ -11,7 +11,7 @@ public class SoundHandler extends Thread {
   PApplet ggn;
   private int musNum=0, currentMusicTrack=0, trackToSwitchTo=0;
   private float masterVolume=1, musicVolume=1, sfxVolume=1, prevVol=1,narrationVolume=1;
-  private boolean switchMusicTrack=false, keepAlive=true, enableSounds=false, startMusic=false;
+  private boolean switchMusicTrack=false, keepAlive=true, enableSounds=false, startMusic=false,miniStopped = false;
 
   /**Create a new sound handler with the given music tracks and global sound and narration files.<br>
   Handles the porcess of actually loading the sound files
@@ -63,6 +63,11 @@ public class SoundHandler extends Thread {
   */
   private void tick() {
     if (enableSounds) {//if sounds are enabled right now
+      if(!ggn.focused){
+        stopSounds();
+        miniStopped = true;
+        return;
+      }
       if (startMusic) {//if the music should be started
         music[currentMusicTrack][musNum].play(1, masterVolume*musicVolume);//play the next music track
         startMusic=false;
@@ -103,6 +108,9 @@ public class SoundHandler extends Thread {
           music[currentMusicTrack][musNum].amp(masterVolume*musicVolume);//stupid volume fix
         }
       }
+    } else if(miniStopped && ggn.focused){
+      miniStopped = false;
+      startSounds();
     }
   }
 

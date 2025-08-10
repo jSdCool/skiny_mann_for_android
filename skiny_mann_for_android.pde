@@ -25,6 +25,7 @@ Used to initilize the most basic of things before the window is created.
 void settings() {//first function called
   //setup the univertal error handler
   UniversalErrorManager.init(this);
+  
   fullScreen(P3D);
   
 }//after this setup will be called after more initilization happens like creating the window surface
@@ -34,11 +35,17 @@ void settings() {//first function called
 Used as the primary place to load and initilize things and spawn threads to load / initilize things, after the window has been created.
 */
 void setup() {//seccond function called
+  orientation(LANDSCAPE);
+  if(width*1.1 < height){
+    //if in portrait then stop loading things so that we do not crash when it goes landscape
+    return;
+  }
   Context context = this.getActivity().getApplicationContext();
   appdata = context.getExternalFilesDir(null).toString();
   try {
     println("attempting to load settings");
     //load settings
+    new File(appdata+"/CBi-games/skinny mann/").mkdirs();
     settings = new Settings(appdata+"/CBi-games/skinny mann/settings.json");
 
     println("loading window icon");
