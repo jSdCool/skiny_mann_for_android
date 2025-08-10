@@ -1216,14 +1216,10 @@ void draw() {// the function that is called every frame
 
 }
 
-void mouseClicked(){
-  mousePressed();
-}
-
 /**Automaticaly called when a mouse click is detected in the window.
 Executes on the render thread
 */
-void mousePressed() {// when you click the mouse
+void mouseClicked() {// when you click the mouse
 
   try {
     if (!levelCreator) {
@@ -1411,22 +1407,22 @@ void mousePressed() {// when you click the mouse
               menue=false;
             }
           }
-          if (levelcreatorLink.isMouseOver()) {//this now opens the level creator
-            //link("https://cbi-games.glitch.me/level%20creator.html");//old level creator webpage
-            if (scr2==null){//create the 2nd screen if it does not exsist
-              scr2 =new ToolBox(millis());
-            }
-            startup=true;//set the level creator screen variables
-            loading=false;
-            newLevel=false;
-            editingStage=false;
-            levelOverview=false;
-            newFile=false;
-            levelCreator=true;
-            filesScrole=0;
-            author = settings.getDefaultAuthor();//set the author to the default
-            return;
-          }
+          //if (levelcreatorLink.isMouseOver()) {//this now opens the level creator
+          //  //link("https://cbi-games.glitch.me/level%20creator.html");//old level creator webpage
+          //  if (scr2==null){//create the 2nd screen if it does not exsist
+          //    scr2 =new ToolBox(millis());
+          //  }
+          //  startup=true;//set the level creator screen variables
+          //  loading=false;
+          //  newLevel=false;
+          //  editingStage=false;
+          //  levelOverview=false;
+          //  newFile=false;
+          //  levelCreator=true;
+          //  filesScrole=0;
+          //  author = settings.getDefaultAuthor();//set the author to the default
+          //  return;
+          //}
         }//end of UGC menu
 
         if (Menue.equals("pause")) {//if that menu is pause
@@ -1500,45 +1496,45 @@ void mousePressed() {// when you click the mouse
 
           }//end of game play settings
 
-          if (settingsMenue.equals("display")) {//if on the display tab
-            String arat = "16:9";//default aspect ratio
-            //when clicking on buttons update the approprate settings
-            if (rez4k.isMouseOver()) {//2160 (4K) resolution button
-              settings.setResolution((int)(2160*16.0/9),2160);
-              settings.save();
-            }
+          //if (settingsMenue.equals("display")) {//if on the display tab
+          //  String arat = "16:9";//default aspect ratio
+          //  //when clicking on buttons update the approprate settings
+          //  if (rez4k.isMouseOver()) {//2160 (4K) resolution button
+          //    settings.setResolution((int)(2160*16.0/9),2160);
+          //    settings.save();
+          //  }
 
-            if (rez1440.isMouseOver()) {// 1440 resolition button
-              settings.setResolution((int)(1440*16.0/9),1440);
-              settings.save();
-            }
+          //  if (rez1440.isMouseOver()) {// 1440 resolition button
+          //    settings.setResolution((int)(1440*16.0/9),1440);
+          //    settings.save();
+          //  }
 
-            if (rez1080.isMouseOver()) {// 1080 resolution button
-              settings.setResolution((int)(1080*16.0/9),1080);
-              settings.save();
-            }
+          //  if (rez1080.isMouseOver()) {// 1080 resolution button
+          //    settings.setResolution((int)(1080*16.0/9),1080);
+          //    settings.save();
+          //  }
 
-            if (rez900.isMouseOver()) {////900 resolution button
-              settings.setResolution((int)(900*16.0/9),900);
-              settings.save();
-            }
+          //  if (rez900.isMouseOver()) {////900 resolution button
+          //    settings.setResolution((int)(900*16.0/9),900);
+          //    settings.save();
+          //  }
 
-            if (rez720.isMouseOver()) {// 720 resolution button
-              settings.setResolution((int)(720*16.0/9),720);
-              settings.save();
-            }
+          //  if (rez720.isMouseOver()) {// 720 resolution button
+          //    settings.setResolution((int)(720*16.0/9),720);
+          //    settings.save();
+          //  }
 
 
-            if (fullScreenOn.isMouseOver()) {//turn full screen on button
-              settings.setFullScreen(true);
-              settings.save();
-            }
+          //  if (fullScreenOn.isMouseOver()) {//turn full screen on button
+          //    settings.setFullScreen(true);
+          //    settings.save();
+          //  }
 
-            if (fullScreenOff.isMouseOver()) {//turn fullscreen off button
-              settings.setFullScreen(false);
-              settings.save();
-            }
-          }//end of display settings menue
+          //  if (fullScreenOff.isMouseOver()) {//turn fullscreen off button
+          //    settings.setFullScreen(false);
+          //    settings.save();
+          //  }
+          //}//end of display settings menue
 
           if (settingsMenue.equals("sound")) {//if on the sound tab
 
@@ -1629,7 +1625,7 @@ void mousePressed() {// when you click the mouse
             }
 
             //process clicks on the default author text box
-            defaultAuthorNameTextBox.mouseClicked();
+            //defaultAuthorNameTextBox.mouseClicked();
 
           }//end of outher settings menue
 
@@ -2889,7 +2885,8 @@ void thrdCalc2() {
 /**Automaticaly called every time a mouse button is pressed down while this window is activated.<br>
 Execuated on the render thread.
 */
-void mousePressed1() {
+void mousePressed() {
+  mouseClicked();
   if (levelCreator) {//if in the level creator
     if (mouseButton==LEFT) {//if the button is the left button
       if (editingStage||editingBlueprint) {//if edditing a stage or blueprint
@@ -3264,23 +3261,23 @@ void drawSettings() {
   }//end of gameplay settings
 
   if (settingsMenue.equals("display")) {//if on the display tab
-    fill(0);
-    st_dsp_vsr.draw();
-    st_dsp_fs.draw();
-    st_dsp_4k.draw();
-    st_dsp_1440.draw();
-    st_dsp_1080.draw();
-    st_dsp_900.draw();
-    st_dsp_720.draw();
-    st_dsp_fsYes.draw();
-    st_dsp_fsNo.draw();
-    rez720.draw();
-    rez900.draw();
-    rez1080.draw();
-    rez1440.draw();
-    rez4k.draw();
-    fullScreenOn.draw();
-    fullScreenOff.draw();
+    //fill(0);
+    //st_dsp_vsr.draw();
+    //st_dsp_fs.draw();
+    //st_dsp_4k.draw();
+    //st_dsp_1440.draw();
+    //st_dsp_1080.draw();
+    //st_dsp_900.draw();
+    //st_dsp_720.draw();
+    //st_dsp_fsYes.draw();
+    //st_dsp_fsNo.draw();
+    //rez720.draw();
+    //rez900.draw();
+    //rez1080.draw();
+    //rez1440.draw();
+    //rez4k.draw();
+    //fullScreenOn.draw();
+    //fullScreenOff.draw();
 
     fill(0);
     st_display.draw();
@@ -3317,7 +3314,7 @@ void drawSettings() {
     st_o_yes.draw();
     st_o_no.draw();
     st_o_diableTransitions.draw();
-    st_o_defaultAuthor.draw();
+    //st_o_defaultAuthor.draw();
     st_o_shadowsOff.draw();
     st_o_shadowsOld.draw();
     st_o_shadowsLow.draw();
@@ -3338,7 +3335,7 @@ void drawSettings() {
 
     disableMenuTransistionsButton.draw();
     enableMenuTransitionButton.draw();
-    defaultAuthorNameTextBox.draw();
+    //defaultAuthorNameTextBox.draw();
 
 
     textSize(50*Scale);
@@ -3572,7 +3569,7 @@ void drawLevelSelectUGC() {
 
   select_lvl_back.draw();
   UGC_open_folder.draw();
-  levelcreatorLink.draw();
+  //levelcreatorLink.draw();
   fill(0);
   //if there are no UGC levels
   if (UGCNames.size()==0) {
