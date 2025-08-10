@@ -502,6 +502,23 @@ Identifier currentlyPlaceing = null;
 
 String errorText = "";
 boolean errorScreen = false;
+boolean prevLeft = false;
+boolean prevRight = false;
+boolean prevJump = false;
+boolean prevIn = false;
+boolean prevOut = false;
+boolean prevE = false;
 
+Button moveLeft;
+Button moveRight;
+Button jumpButton;
+Button useButton;
+Button movein;
+Button moveout;
+
+Button moveInLeft;
+Button moveOutLeft;
+Button moveOutRight;
+Button moveInRight;
 
 //end of vars.pde

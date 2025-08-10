@@ -99,7 +99,7 @@ ArrayList<Client> clients = new ArrayList<>();
 //int
 
 //button
-Button moveLeft,moveRight,jumpButton,useButton,movein,moveout;
+
 
 
 
@@ -1142,6 +1142,10 @@ void draw() {// the function that is called every frame
       if(e3DMode){
         movein.draw();
         moveout.draw();
+        moveInLeft.draw();
+        moveOutLeft.draw();
+        moveOutRight.draw();
+        moveInRight.draw();
       }
     }
 
@@ -1152,34 +1156,96 @@ void draw() {// the function that is called every frame
         mouseX=(int)touches[i].x;
         mouseY=(int)touches[i].y;
         if(moveLeft.isMouseOver()){
-          leftPressed=true;
+          leftPressed = true;
         }
         if(moveRight.isMouseOver()){
-          rightPressed=true;
+          rightPressed = true;
         }
         if(jumpButton.isMouseOver()){
-          jumpPressed=true;
+          jumpPressed = true;
         }
         if(useButton.isMouseOver()){
-          usePressed=true;
+          usePressed = true;
         }
         if(e3DMode){
           if(movein.isMouseOver()){
-            inPressed=true;
+            inPressed = true;
           }
           if(moveout.isMouseOver()){
-            outPressed=true;
+            outPressed = true;
+          }
+          if(moveInLeft.isMouseOver()){
+            inPressed = true;
+            leftPressed = true;
+          }
+          if(moveOutLeft.isMouseOver()){
+            outPressed = true;
+            leftPressed = true;
+          }
+          if(moveOutRight.isMouseOver()){
+            outPressed = true;
+            rightPressed = true;
+          }
+          if(moveInRight.isMouseOver()){
+            inPressed = true;
+            rightPressed = true;
           }
         }
 
       }
     }
-    playerMovementManager.setLeft(leftPressed);
-    playerMovementManager.setRight(rightPressed);
-    playerMovementManager.setJump(jumpPressed);
-    E_pressed=usePressed;
-    playerMovementManager.setIn(inPressed);
-    playerMovementManager.setOut(outPressed);
+    
+    if(!prevLeft && leftPressed){
+      playerMovementManager.setLeft(true);
+      prevLeft = true;
+    }
+    if(prevLeft && !leftPressed){
+      playerMovementManager.setLeft(false);
+      prevLeft = false;
+    }
+    if(!prevRight && rightPressed){
+      playerMovementManager.setRight(true);
+      prevRight = true;
+    }
+    if(prevRight && !rightPressed){
+      playerMovementManager.setRight(false);
+      prevRight = false;
+    }
+    
+    if(!prevJump && jumpPressed){
+      playerMovementManager.setJump(true);
+      prevJump = true;
+    }
+    if(prevJump && !jumpPressed){
+      playerMovementManager.setJump(false);
+      prevJump = false;
+    }
+    
+    if(!prevE && usePressed){
+      E_pressed = true;
+      prevE = true;
+    }
+    if(prevE && !usePressed){
+      E_pressed = false;
+      prevE = false;
+    }
+    if(!prevIn && inPressed){
+      playerMovementManager.setIn(true);
+      prevIn = true;
+    }
+    if(prevIn && !inPressed){
+      playerMovementManager.setIn(false);
+      prevIn = false;
+    }
+    if(!prevOut && outPressed){
+      playerMovementManager.setOut(true);
+      prevOut = true;
+    }
+    if(prevOut && !outPressed){
+      playerMovementManager.setOut(false);
+      prevOut = false;
+    }
+    
 
     disEngageHUDPosition();//turn the HUD things off
   }
@@ -4661,12 +4727,17 @@ void  initButtons() {
   //===================================================
   //reserved for arcade edition vars
 
-  moveLeft=new Button(this, 20*Scale,height-300*Scale,100*Scale,100*Scale," < ",color(255,255,255,50),color(255,255,255,50));
-  moveRight=new Button(this, 160*Scale,height-300*Scale,100*Scale,100*Scale," > ",color(255,255,255,50),color(255,255,255,50));
-  jumpButton=new Button(this,width-120*Scale,height-300*Scale,100*Scale,100*Scale," ^ ",color(255,255,255,50),color(255,255,255,50));
-  useButton=new Button(this,width/2-60*Scale,height-80*Scale,120*Scale,80*Scale,"Use",color(255,255,255,50),color(255,255,255,50));
-  movein=new Button(this,90*Scale,height-420*Scale,100*Scale,100*Scale," ^ ",color(255,255,255,50),color(255,255,255,50));
-  moveout=new Button(this,90*Scale,height-180*Scale,100*Scale,100*Scale," v ",color(255,255,255,50),color(255,255,255,50));
+  moveLeft = new UiButton(ui, 20,420,100,100," < ",color(255,255,255,50),color(255,255,255,50));
+  moveRight = new UiButton(ui, 160,420,100,100," > ",color(255,255,255,50),color(255,255,255,50));
+  jumpButton = new UiButton(ui,1160,420,100,100," ^ ",color(255,255,255,50),color(255,255,255,50));
+  useButton = new UiButton(ui,580,640,120,80,"Use",color(255,255,255,50),color(255,255,255,50));
+  movein = new UiButton(ui,90,300,100,100," ^ ",color(255,255,255,50),color(255,255,255,50));
+  moveout = new UiButton(ui,90,540,100,100," v ",color(255,255,255,50),color(255,255,255,50));
+  
+  moveInLeft = new UiButton(ui, 20, 300, 60, 100, color(255,255,255,50),color(255,255,255,50));
+  moveOutLeft = new UiButton(ui, 20, 540, 60, 100, color(255,255,255,50),color(255,255,255,50));
+  moveOutRight = new UiButton(ui, 200, 540, 60, 100, color(255,255,255,50),color(255,255,255,50));
+  moveInRight = new UiButton(ui, 200, 300, 60, 100, color(255,255,255,50),color(255,255,255,50));
 
   //===================================================
   //DO NOT EDIT THEESE LINES, EVER
