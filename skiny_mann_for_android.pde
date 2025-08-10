@@ -1310,12 +1310,12 @@ void mouseClicked() {// when you click the mouse
             initMenuTransition(Transitions.MAIN_TO_SETTINGS);
             return;
           }
-          //if (howToPlayButton.isMouseOver()) {//tutorial button
-          //  //how to play
-          //  menue=false;
-          //  tutorialMode=true;
-          //  tutorialPos=0;
-          //}
+          if (howToPlayButton.isMouseOver()) {//tutorial button
+            //how to play
+            menue=false;
+            tutorialMode=true;
+            tutorialPos=0;
+          }
         }
         if (Menue.equals("level select")) {//if that menu is level select
           //get the current level progress
@@ -2436,13 +2436,13 @@ void keyPressed() {// when a key is pressed
         menue=true;//open the pause menu
         Menue="pause";
       }
-      if (keyCode==65) {//if A is pressed
+      if (key == 'a' || key == 'A') {//if A is pressed
         playerMovementManager.setLeft(true);
       }
-      if (keyCode==68) {//if D is pressed
+      if (key == 'd' || key == 'D') {//if D is pressed
         playerMovementManager.setRight(true);
       }
-      if (keyCode==32) {//if space is pressed
+      if (key == ' ') {//if space is pressed
         playerMovementManager.setJump(true);
       }
       if (dev_mode) {//if in dev mode
@@ -2453,10 +2453,10 @@ void keyPressed() {// when a key is pressed
       if (key=='e'||key=='E') {//if E is pressed
         E_pressed=true;
       }
-      if (keyCode==87) {//if W is pressed
+      if (key == 'w' || key == 'W') {//if W is pressed
         playerMovementManager.setIn(true);
       }
-      if (keyCode==83) {//if S is pressed
+      if (key == 's' || key == 'S') {//if S is pressed
         playerMovementManager.setOut(true);
       }
       if (e3DMode) {//if in 3D mode
@@ -2480,16 +2480,16 @@ void keyPressed() {// when a key is pressed
         if (keyCode==83) {//if 'S' is pressed
           s3D=true;
         }
-        if (keyCode==37) {//if LEFT ARROW is pressed
+        if (keyCode==LEFT) {//if LEFT ARROW is pressed
           cam_left=true;
         }
-        if (keyCode==39) {//if RIGHT ARROW is pressed
+        if (keyCode==RIGHT) {//if RIGHT ARROW is pressed
           cam_right=true;
         }
-        if (keyCode==38) {//if UP ARROW is pressed
+        if (keyCode==UP) {//if UP ARROW is pressed
           cam_up=true;
         }
-        if (keyCode==40) {//if DOWN ARROW is pressed
+        if (keyCode==DOWN) {//if DOWN ARROW is pressed
           cam_down=true;
         }
       }
@@ -2663,22 +2663,22 @@ void keyReleased() {//when you release a key
   try {
     if (inGame || (levelCreator && editingStage)) {//when in a level or when in the level creator and editng a stage
       //update movement manager inputs
-      if (keyCode==65) {//if A is released
+      if (key == 'a' || key == 'A') {//if A is released
         playerMovementManager.setLeft(false);
       }
-      if (keyCode==68) {//if D is released
+      if (key == 'd' || key == 'D') {//if D is released
         playerMovementManager.setRight(false);
       }
-      if (keyCode==32) {//if SPACE is released
+      if (key == ' ') {//if SPACE is released
         playerMovementManager.setJump(false);
       }
       if (key=='e'||key=='E') {
         E_pressed=false;
       }
-      if (keyCode==87) {//w
+      if (key == 'w' || key == 'W') {//w
         playerMovementManager.setIn(false);
       }
-      if (keyCode==83) {//s
+      if (key == 's' || key == 'S') {//s
         playerMovementManager.setOut(false);
       }
 
@@ -2702,16 +2702,16 @@ void keyReleased() {//when you release a key
         if (keyCode==83) {//if 'S' is pressed
           s3D=false;
         }
-        if (keyCode==37) {//if LEFT ARROW released
+        if (keyCode==LEFT) {//if LEFT ARROW released
           cam_left=false;
         }
-        if (keyCode==39) {//if RIGHT ARROW released
+        if (keyCode==RIGHT) {//if RIGHT ARROW released
           cam_right=false;
         }
-        if (keyCode==38) {//if UP ARROW released
+        if (keyCode==UP) {//if UP ARROW released
           cam_up=false;
         }
-        if (keyCode==40) {//if DOWN ARROW released
+        if (keyCode==DOWN) {//if DOWN ARROW released
           cam_down=false;
         }
       }
